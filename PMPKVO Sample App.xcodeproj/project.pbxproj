@@ -13,7 +13,7 @@
 		64A0843D150D7DF200BE94AC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 64A0843B150D7DF200BE94AC /* Credits.rtf */; };
 		64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */; };
 		64A08443150D7DF200BE94AC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A08441150D7DF200BE94AC /* MainMenu.xib */; };
-		64A08463150D7E2500BE94AC /* PMPKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* PMPKVO.m */; };
+		64A08463150D7E2500BE94AC /* PMPKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* PMPKVObservation.m */; };
 		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
 		64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* PMPKVOTests.m */; };
 /* End PBXBuildFile section */
@@ -33,8 +33,8 @@
 		64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPAppDelegate.m; sourceTree = "<group>"; };
 		64A08442150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		64A0844A150D7DF200BE94AC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		64A08461150D7E2500BE94AC /* PMPKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVO.h; sourceTree = "<group>"; };
-		64A08462150D7E2500BE94AC /* PMPKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVO.m; sourceTree = "<group>"; };
+		64A08461150D7E2500BE94AC /* PMPKVObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVObservation.h; sourceTree = "<group>"; };
+		64A08462150D7E2500BE94AC /* PMPKVObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVObservation.m; sourceTree = "<group>"; };
 		64A08464150D7EE000BE94AC /* TestObservee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestObservee.h; path = "PMPKVO Sample App/TestObservee.h"; sourceTree = SOURCE_ROOT; };
 		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; };
 		64A0846B150D890B00BE94AC /* PMPKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVOTests.h; sourceTree = "<group>"; };
@@ -56,8 +56,8 @@
 		64A0841D150D7DF100BE94AC = {
 			isa = PBXGroup;
 			children = (
-				64A08461150D7E2500BE94AC /* PMPKVO.h */,
-				64A08462150D7E2500BE94AC /* PMPKVO.m */,
+				64A08461150D7E2500BE94AC /* PMPKVObservation.h */,
+				64A08462150D7E2500BE94AC /* PMPKVObservation.m */,
 				64A08432150D7DF200BE94AC /* PMPKVO Sample App */,
 				64A0842B150D7DF200BE94AC /* Frameworks */,
 				64A08429150D7DF200BE94AC /* Products */,
@@ -185,7 +185,7 @@
 			files = (
 				64A08439150D7DF200BE94AC /* main.m in Sources */,
 				64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */,
-				64A08463150D7E2500BE94AC /* PMPKVO.m in Sources */,
+				64A08463150D7E2500BE94AC /* PMPKVObservation.m in Sources */,
 				64A08466150D7EE000BE94AC /* TestObservee.m in Sources */,
 				64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */,
 			);
