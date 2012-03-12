@@ -13,21 +13,10 @@
 		64A0843D150D7DF200BE94AC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 64A0843B150D7DF200BE94AC /* Credits.rtf */; };
 		64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */; };
 		64A08443150D7DF200BE94AC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A08441150D7DF200BE94AC /* MainMenu.xib */; };
-		64A0844B150D7DF200BE94AC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0844A150D7DF200BE94AC /* SenTestingKit.framework */; };
-		64A0844C150D7DF200BE94AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0842C150D7DF200BE94AC /* Cocoa.framework */; };
-		64A08454150D7DF200BE94AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A08452150D7DF200BE94AC /* InfoPlist.strings */; };
-		64A08457150D7DF200BE94AC /* PMPKVO_Sample_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08456150D7DF200BE94AC /* PMPKVO_Sample_AppTests.m */; };
+		64A08463150D7E2500BE94AC /* PMPKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* PMPKVO.m */; };
+		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
+		64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* PMPKVOTests.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64A0844D150D7DF200BE94AC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A0841F150D7DF100BE94AC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64A08427150D7DF200BE94AC;
-			remoteInfo = "PMPKVO Sample App";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PMPKVO Sample App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,20 +24,21 @@
 		64A0842F150D7DF200BE94AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64A08430150D7DF200BE94AC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		64A08431150D7DF200BE94AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		64A08434150D7DF200BE94AC /* PMPKVO Sample App-Info.plist */ = {isa = PBXFileReference; path = "PMPKVO Sample App-Info.plist"; sourceTree = "<group>"; };
+		64A08434150D7DF200BE94AC /* PMPKVO Sample App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PMPKVO Sample App-Info.plist"; sourceTree = "<group>"; };
 		64A08436150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64A08438150D7DF200BE94AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64A0843A150D7DF200BE94AC /* PMPKVO Sample App-Prefix.pch */ = {isa = PBXFileReference; path = "PMPKVO Sample App-Prefix.pch"; sourceTree = "<group>"; };
+		64A0843A150D7DF200BE94AC /* PMPKVO Sample App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PMPKVO Sample App-Prefix.pch"; sourceTree = "<group>"; };
 		64A0843C150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		64A0843E150D7DF200BE94AC /* PMPAppDelegate.h */ = {isa = PBXFileReference; path = PMPAppDelegate.h; sourceTree = "<group>"; };
+		64A0843E150D7DF200BE94AC /* PMPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPAppDelegate.h; sourceTree = "<group>"; };
 		64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPAppDelegate.m; sourceTree = "<group>"; };
 		64A08442150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		64A08449150D7DF200BE94AC /* PMPKVO Sample AppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PMPKVO Sample AppTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0844A150D7DF200BE94AC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		64A08451150D7DF200BE94AC /* PMPKVO Sample AppTests-Info.plist */ = {isa = PBXFileReference; path = "PMPKVO Sample AppTests-Info.plist"; sourceTree = "<group>"; };
-		64A08453150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		64A08455150D7DF200BE94AC /* PMPKVO_Sample_AppTests.h */ = {isa = PBXFileReference; path = PMPKVO_Sample_AppTests.h; sourceTree = "<group>"; };
-		64A08456150D7DF200BE94AC /* PMPKVO_Sample_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPKVO_Sample_AppTests.m; sourceTree = "<group>"; };
+		64A08461150D7E2500BE94AC /* PMPKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVO.h; sourceTree = "<group>"; };
+		64A08462150D7E2500BE94AC /* PMPKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVO.m; sourceTree = "<group>"; };
+		64A08464150D7EE000BE94AC /* TestObservee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestObservee.h; path = "PMPKVO Sample App/TestObservee.h"; sourceTree = SOURCE_ROOT; };
+		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; };
+		64A0846B150D890B00BE94AC /* PMPKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVOTests.h; sourceTree = "<group>"; };
+		64A0846C150D890B00BE94AC /* PMPKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVOTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,23 +50,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64A08445150D7DF200BE94AC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64A0844B150D7DF200BE94AC /* SenTestingKit.framework in Frameworks */,
-				64A0844C150D7DF200BE94AC /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		64A0841D150D7DF100BE94AC = {
 			isa = PBXGroup;
 			children = (
+				64A08461150D7E2500BE94AC /* PMPKVO.h */,
+				64A08462150D7E2500BE94AC /* PMPKVO.m */,
 				64A08432150D7DF200BE94AC /* PMPKVO Sample App */,
-				64A0844F150D7DF200BE94AC /* PMPKVO Sample AppTests */,
 				64A0842B150D7DF200BE94AC /* Frameworks */,
 				64A08429150D7DF200BE94AC /* Products */,
 			);
@@ -86,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */,
-				64A08449150D7DF200BE94AC /* PMPKVO Sample AppTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +99,10 @@
 				64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */,
 				64A08441150D7DF200BE94AC /* MainMenu.xib */,
 				64A08433150D7DF200BE94AC /* Supporting Files */,
+				64A0846B150D890B00BE94AC /* PMPKVOTests.h */,
+				64A0846C150D890B00BE94AC /* PMPKVOTests.m */,
+				64A08464150D7EE000BE94AC /* TestObservee.h */,
+				64A08465150D7EE000BE94AC /* TestObservee.m */,
 			);
 			path = "PMPKVO Sample App";
 			sourceTree = "<group>";
@@ -130,25 +115,6 @@
 				64A08438150D7DF200BE94AC /* main.m */,
 				64A0843A150D7DF200BE94AC /* PMPKVO Sample App-Prefix.pch */,
 				64A0843B150D7DF200BE94AC /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		64A0844F150D7DF200BE94AC /* PMPKVO Sample AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				64A08455150D7DF200BE94AC /* PMPKVO_Sample_AppTests.h */,
-				64A08456150D7DF200BE94AC /* PMPKVO_Sample_AppTests.m */,
-				64A08450150D7DF200BE94AC /* Supporting Files */,
-			);
-			path = "PMPKVO Sample AppTests";
-			sourceTree = "<group>";
-		};
-		64A08450150D7DF200BE94AC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				64A08451150D7DF200BE94AC /* PMPKVO Sample AppTests-Info.plist */,
-				64A08452150D7DF200BE94AC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -173,25 +139,6 @@
 			productReference = 64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64A08448150D7DF200BE94AC /* PMPKVO Sample AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64A0845D150D7DF200BE94AC /* Build configuration list for PBXNativeTarget "PMPKVO Sample AppTests" */;
-			buildPhases = (
-				64A08444150D7DF200BE94AC /* Sources */,
-				64A08445150D7DF200BE94AC /* Frameworks */,
-				64A08446150D7DF200BE94AC /* Resources */,
-				64A08447150D7DF200BE94AC /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64A0844E150D7DF200BE94AC /* PBXTargetDependency */,
-			);
-			name = "PMPKVO Sample AppTests";
-			productName = "PMPKVO Sample AppTests";
-			productReference = 64A08449150D7DF200BE94AC /* PMPKVO Sample AppTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -214,7 +161,6 @@
 			projectRoot = "";
 			targets = (
 				64A08427150D7DF200BE94AC /* PMPKVO Sample App */,
-				64A08448150D7DF200BE94AC /* PMPKVO Sample AppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,31 +176,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64A08446150D7DF200BE94AC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64A08454150D7DF200BE94AC /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		64A08447150D7DF200BE94AC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		64A08424150D7DF200BE94AC /* Sources */ = {
@@ -263,26 +185,13 @@
 			files = (
 				64A08439150D7DF200BE94AC /* main.m in Sources */,
 				64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64A08444150D7DF200BE94AC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64A08457150D7DF200BE94AC /* PMPKVO_Sample_AppTests.m in Sources */,
+				64A08463150D7E2500BE94AC /* PMPKVO.m in Sources */,
+				64A08466150D7EE000BE94AC /* TestObservee.m in Sources */,
+				64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64A0844E150D7DF200BE94AC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64A08427150D7DF200BE94AC /* PMPKVO Sample App */;
-			targetProxy = 64A0844D150D7DF200BE94AC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		64A08435150D7DF200BE94AC /* InfoPlist.strings */ = {
@@ -307,14 +216,6 @@
 				64A08442150D7DF200BE94AC /* en */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		64A08452150D7DF200BE94AC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				64A08453150D7DF200BE94AC /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -387,34 +288,6 @@
 			};
 			name = Release;
 		};
-		64A0845E150D7DF200BE94AC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PMPKVO Sample App.app/Contents/MacOS/PMPKVO Sample App";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
-				INFOPLIST_FILE = "PMPKVO Sample AppTests/PMPKVO Sample AppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		64A0845F150D7DF200BE94AC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PMPKVO Sample App.app/Contents/MacOS/PMPKVO Sample App";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
-				INFOPLIST_FILE = "PMPKVO Sample AppTests/PMPKVO Sample AppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -434,14 +307,7 @@
 				64A0845C150D7DF200BE94AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		64A0845D150D7DF200BE94AC /* Build configuration list for PBXNativeTarget "PMPKVO Sample AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64A0845E150D7DF200BE94AC /* Debug */,
-				64A0845F150D7DF200BE94AC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

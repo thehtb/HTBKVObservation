@@ -8,9 +8,19 @@
 
 #import "PMPAppDelegate.h"
 
+#import "PMPKVOTests.h"
+
+@interface PMPAppDelegate ()
+
+@property (retain) PMPKVOTests * tests;
+
+@end
+
+
 @implementation PMPAppDelegate
 
 @synthesize window = _window;
+@synthesize tests;
 
 - (void)dealloc
 {
@@ -19,7 +29,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    self.tests = [[[PMPKVOTests alloc] init] autorelease];
+    [self.tests runTests];
 }
 
 @end
