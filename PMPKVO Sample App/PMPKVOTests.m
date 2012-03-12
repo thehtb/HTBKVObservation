@@ -40,6 +40,8 @@
             @"test1cleanup",
             @"test2simplePMPObservation",
             @"test2cleanup",
+            @"test3ObserveeReleasedEarly",
+            @"test3cleanup",
             nil];
 }
 
@@ -98,6 +100,38 @@
 {
     self.kvo = nil; // will remove the observation
     self.observee = nil; // shouldn't cause any KVO warnings in console
+    
+    [self next];
+}
+
+- (void)test3ObservationViaSelecterForObject:(id)obj changes:(NSDictionary *)changes;
+{
+    NSAssert([[self currentTest] isEqualToString:@"test3ObserveeReleasedEarly"], @"received wrong kvo");
+    self.changeObserved = YES;
+}
+
+- (void)test3ObserveeReleasedEarly
+{
+    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee.observeMe = @"Orig text";
+    
+    self.kvo = [[[PMPKVObservation alloc] init] autorelease];
+    self.kvo.observee = self.observee;
+    self.kvo.observer = self;
+    self.kvo.keyPath = @"observeMe";
+    self.kvo.selector = @selector(test3ObservationViaSelecterForObject:changes:);
+    
+    [self.kvo observe];
+    
+    self.observee.observeMe = @"New text";
+    
+    [self checkObservationAndNext];
+}
+
+- (void)test3cleanup
+{
+    self.observee = nil; // would cause KVO warning if not for the swizzled dealloc on observee
+    self.kvo = nil; // would crash if not for the swizzled dealloc on observee
     
     [self next];
 }
