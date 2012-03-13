@@ -1,22 +1,24 @@
-h1. PMPKVO
+h1. PMPKVO - Yet Another KVO-improvement project
 
 h2. Synopsis
+
+p. Include PMPKVObservation.m and .h in your project
 
 bc.. #import "PMPKVObservation.h"
 
 @interface PMPKVOTests ()
-
 @property (retain) PMPKVObservation * kvo;
-
 @end
 
 @implementation PMPKVOTests
-
 @synthesize kvo = _kvo;
 
 - (void)observationFired:(PMPKVObservation *)observation changes:(NSDictionary *)changes;
 {
-    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@", observation.observee, observation.keyPath, changes);
+    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
+        observation.observee,
+        observation.keyPath,
+        changes);
 }
 
 - (void)selectorObservation
@@ -34,9 +36,14 @@ bc.. #import "PMPKVObservation.h"
                                  keyPath:@"observeMe"
                                  options:0
                                 callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
-                                    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@", observation.observee, observation.keyPath, changes);
+                                    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
+                                        observation.observee,
+                                        observation.keyPath,
+                                        changes);
                                 }];
 }
+
+@end
 
 p. The options and change dictionary are as per normal KVO. You need to be wary of the block causing retain cycles of self as usual.
 
@@ -57,6 +64,6 @@ p. Enter PMPKVO!
 
 h2. Author
 
-p. Mark Aufflick (mark@aufflick.com)
-p. http://mark.aufflick.com
-p. http://pumptheory.com
+p. Mark Aufflick ("mark@aufflick.com":mark@aufflick.com)
+p. "http://mark.aufflick.com":http://mark.aufflick.com
+p. "http://pumptheory.com":http://pumptheory.com
