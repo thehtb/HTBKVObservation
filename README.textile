@@ -43,14 +43,22 @@ bc.. #import "PMPKVObservation.h"
                                 }];
 }
 
+- (void)dealloc
+{
+   [ _kvo release];
+}
+
 @end
 
 p. The options and change dictionary are as per normal KVO. You need to be wary of the block causing retain cycles of self as usual.
+
+p. Unlike MAKVONotificationCenter and others, you are responsible for managing the lifecycle of the kvo object - when it is dealloc-ed the observation will be removed. Like MAKVONotificationCenter, a minimum of magic is used to swizzle the dealloc method of the observed object and remove the observation if it still exists (tracked via an associated NSHashTable). If for some reason you want to find out if the kvo object you hold has been released early you can check the @isValid@ accessor (which you can observe with KVO).
 
 h2. Caveats
 
 # While I am using this in a client project, that project has not yet shipped so I can't promise wide-spread testing. Take a look at the tests in the test app and if you are using scenarios that you don't thing are tested pull requests are welcome!
 # I haven't tried this under ARC, but I think I've made PMPKVObservation.m so it will compile and work as-is (the same can't be said for the test app). Please let me know how you go.
+# No attempt is made to stop you changing the observed object etc. after creation, but doing so isn't going to be very effective...
 
 h2. Background
 
@@ -65,5 +73,5 @@ p. Enter PMPKVO!
 h2. Author
 
 p. Mark Aufflick ("mark@aufflick.com":mailto:mark@aufflick.com)
-p. "http://mark.aufflick.com":http://mark.aufflick.com
-p. "http://pumptheory.com":http://pumptheory.com
+"http://mark.aufflick.com":http://mark.aufflick.com
+"http://pumptheory.com":http://pumptheory.com
