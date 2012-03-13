@@ -33,4 +33,9 @@
     [self.tests runTests];
 }
 
+- (IBAction)reRunTests:(id)sender
+{
+    [self.tests runTests];
+}
+
 @end
