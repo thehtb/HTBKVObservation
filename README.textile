@@ -46,6 +46,8 @@ bc.. #import "PMPKVObservation.h"
 - (void)dealloc
 {
    [ _kvo release];
+
+   [super dealloc];
 }
 
 @end
