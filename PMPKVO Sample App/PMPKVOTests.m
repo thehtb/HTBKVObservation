@@ -42,6 +42,8 @@
             @"test2cleanup",
             @"test3ObserveeReleasedEarly",
             @"test3cleanup",
+            @"test4simpleBlockObservation",
+            @"test4cleanup",
             nil];
 }
 
@@ -132,6 +134,38 @@
 {
     self.observee = nil; // would cause KVO warning if not for the swizzled dealloc on observee
     self.kvo = nil; // would crash if not for the swizzled dealloc on observee
+    
+    [self next];
+}
+
+- (void)test4simpleBlockObservation
+{
+    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee.observeMe = @"Orig text";
+    
+    self.kvo = [[[PMPKVObservation alloc] init] autorelease];
+    self.kvo.observee = self.observee;
+    self.kvo.keyPath = @"observeMe";
+    
+    __block typeof(self) _self = self;
+    
+    [self.kvo setCallbackBlock:^(PMPKVObservation * obs, NSDictionary * change) {
+        NSAssert([[_self currentTest] isEqualToString:@"test4simpleBlockObservation"], @"received wrong kvo");
+        _self.changeObserved = YES;
+    }];
+    
+    [self.kvo observe];
+    
+    self.observee.observeMe = @"New text";
+    
+    //[self checkObservationAndNext];
+    [self next];
+}
+
+- (void)test4cleanup
+{
+    self.kvo = nil; // will remove the observation
+    self.observee = nil; // shouldn't cause any KVO warnings in console
     
     [self next];
 }

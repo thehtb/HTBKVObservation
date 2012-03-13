@@ -23,11 +23,12 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 
 @implementation PMPKVObservation
 
-@synthesize observer=_observer;
 @synthesize observee=_observee;
+@synthesize observer=_observer;
+@synthesize selector=_selector;
+@synthesize callbackBlock=_callbackBlock;
 @synthesize keyPath=_keyPath;
 @synthesize options=_options;
-@synthesize selector=_selector;
 @synthesize isValid=_isValid;
 
 - (id)init
@@ -43,10 +44,14 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 - (void)dealloc
 {
     [self invalidate];
+
 #if ! __has_feature(objc_arc)
     [_keyPath release];
+    [_callbackBlock release];
 #endif
+    
     _keyPath = nil;
+    _callbackBlock = nil;
     
 #if ! __has_feature(objc_arc)
     [super dealloc];
@@ -116,9 +121,8 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 {
     if (!_isValid && // can't re-observe
         _observee &&
-        _observer &&
         _keyPath &&
-        _selector)
+        ((_observer && _selector) || _callbackBlock))
     {
         // only swizzling the target dealloc for it to remove all observers - releasing/invalidating at the observer end
         // is its own responsibility
@@ -169,10 +173,17 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([self.keyPath isEqualToString:keyPath] && self.observee == object)
-        [self.observer performSelector:self.selector withObject:object withObject:change];
+    if ([_keyPath isEqualToString:keyPath] && _observee == object)
+    {
+        if (_callbackBlock)
+            _callbackBlock(self, change);
+        else
+            [_observer performSelector:_selector withObject:self withObject:change];
+    }
     else
+    {
         NSLog(@"PMPKVObservation: received observation for unexpected keyPath (%@) or object (%@)", keyPath, object);
+    }
 }
 
 @end
