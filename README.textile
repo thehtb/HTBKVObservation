@@ -64,6 +64,6 @@ p. Enter PMPKVO!
 
 h2. Author
 
-p. Mark Aufflick ("mark@aufflick.com":mark@aufflick.com)
+p. Mark Aufflick ("mark@aufflick.com":mailto:mark@aufflick.com)
 p. "http://mark.aufflick.com":http://mark.aufflick.com
 p. "http://pumptheory.com":http://pumptheory.com
