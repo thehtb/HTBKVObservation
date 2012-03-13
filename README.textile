@@ -1,0 +1,62 @@
+h1. PMPKVO
+
+h2. Synopsis
+
+bc.. #import "PMPKVObservation.h"
+
+@interface PMPKVOTests ()
+
+@property (retain) PMPKVObservation * kvo;
+
+@end
+
+@implementation PMPKVOTests
+
+@synthesize kvo = _kvo;
+
+- (void)observationFired:(PMPKVObservation *)observation changes:(NSDictionary *)changes;
+{
+    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@", observation.observee, observation.keyPath, changes);
+}
+
+- (void)selectorObservation
+{
+    self.kvo = [PMPKVObservation observe:anObjectToObserve
+                                observer:self
+                                selector:@selector(observationFired:changes:)
+                                 keyPath:@"observeMe"
+                                 options:0];
+}
+
+- (void)blockObservation
+{
+    self.kvo = [PMPKVObservation observe:anObjectToObserve
+                                 keyPath:@"observeMe"
+                                 options:0
+                                callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@", observation.observee, observation.keyPath, changes);
+                                }];
+}
+
+p. The options and change dictionary are as per normal KVO. You need to be wary of the block causing retain cycles of self as usual.
+
+h2. Caveats
+
+# While I am using this in a client project, that project has not yet shipped so I can't promise wide-spread testing. Take a look at the tests in the test app and if you are using scenarios that you don't thing are tested pull requests are welcome!
+# I haven't tried this under ARC, but I think I've made PMPKVObservation.m so it will compile and work as-is (the same can't be said for the test app). Please let me know how you go.
+
+h2. Background
+
+p. If you're reading this then you're probably as frustrated by seemingly random KVO crashes and/or the pain of huge if/else blocks in your observers. I've never been happy with the other KVO-improvement classes I've seen, and never having had any bright insights myself I kept doing things the normal way. This becomes especially painful with things like view based NSTableViews when you are re-using objects and so need to observe a new object, being very careful to un-observe the prior object (unless it's been released, which you need to either track yourself if you can, or retain it, which has its own problems).
+
+p. It was clear that the dealloc swizzling approach of Mike Ash's MAKVONotificationCenter was unavoidable, but I didn't like the complexity. Recently Gwynne Raskind posted a somewhat updated MAKVONotificationCenter which sparked some discussion, including a comment discussing SPKVONotificationCenter by Joachim Bengtsson. Joachim's brainwave was that observations should be modelled as standalone objects and simply managing the lifecycle of that object appropriately should remove the observation. Clean and simple.
+
+p. Except it's not quite that simple because you still need to swizzle the dealloc of the observed object since it can go away at any time. And as much as I love a good macro as much as the next hacker, Joachim's $depends() macro looks about as much fun as a turing complete makefile.
+
+p. Enter PMPKVO!
+
+h2. Author
+
+p. Mark Aufflick (mark@aufflick.com)
+p. http://mark.aufflick.com
+p. http://pumptheory.com

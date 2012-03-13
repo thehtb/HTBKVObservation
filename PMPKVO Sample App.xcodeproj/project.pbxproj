@@ -16,6 +16,7 @@
 		64A08463150D7E2500BE94AC /* PMPKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* PMPKVObservation.m */; };
 		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
 		64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* PMPKVOTests.m */; };
+		64EA06A3150ED2DA00E0934C /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 64EA06A2150ED2DA00E0934C /* README.textile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; };
 		64A0846B150D890B00BE94AC /* PMPKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVOTests.h; sourceTree = "<group>"; };
 		64A0846C150D890B00BE94AC /* PMPKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVOTests.m; sourceTree = "<group>"; };
+		64EA06A2150ED2DA00E0934C /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		64A0841D150D7DF100BE94AC = {
 			isa = PBXGroup;
 			children = (
+				64EA06A2150ED2DA00E0934C /* README.textile */,
 				64A08461150D7E2500BE94AC /* PMPKVObservation.h */,
 				64A08462150D7E2500BE94AC /* PMPKVObservation.m */,
 				64A08432150D7DF200BE94AC /* PMPKVO Sample App */,
@@ -173,6 +176,7 @@
 				64A08437150D7DF200BE94AC /* InfoPlist.strings in Resources */,
 				64A0843D150D7DF200BE94AC /* Credits.rtf in Resources */,
 				64A08443150D7DF200BE94AC /* MainMenu.xib in Resources */,
+				64EA06A3150ED2DA00E0934C /* README.textile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
