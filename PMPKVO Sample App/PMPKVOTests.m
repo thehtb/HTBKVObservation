@@ -44,6 +44,12 @@
             @"test3cleanup",
             @"test4simpleBlockObservation",
             @"test4cleanup",
+            @"test5helperMethodSimplePMPObservation",
+            @"test5cleanup",
+            @"test6helperMethodObserveeReleasedEarly",
+            @"test6cleanup",
+            @"test7helperMethodSimpleBlockObservation",
+            @"test7cleanup",
             nil];
 }
 
@@ -74,7 +80,7 @@
     [self next];
 }
 
-- (void)test2ObservationViaSelecterForObject:(id)obj changes:(NSDictionary *)changes;
+- (void)test2ObservationViaSelecterForObservation:(id)obs changes:(NSDictionary *)changes;
 {
     NSAssert([[self currentTest] isEqualToString:@"test2simplePMPObservation"], @"received wrong kvo");
     self.changeObserved = YES;
@@ -89,7 +95,7 @@
     self.kvo.observee = self.observee;
     self.kvo.observer = self;
     self.kvo.keyPath = @"observeMe";
-    self.kvo.selector = @selector(test2ObservationViaSelecterForObject:changes:);
+    self.kvo.selector = @selector(test2ObservationViaSelecterForObservation:changes:);
     
     [self.kvo observe];
     
@@ -163,6 +169,95 @@
 }
 
 - (void)test4cleanup
+{
+    self.kvo = nil; // will remove the observation
+    self.observee = nil; // shouldn't cause any KVO warnings in console
+    
+    [self next];
+}
+
+- (void)test5ObservationViaSelecterForObservation:(id)obs changes:(NSDictionary *)changes;
+{
+    NSAssert([[self currentTest] isEqualToString:@"test5helperMethodSimplePMPObservation"], @"received wrong kvo");
+    self.changeObserved = YES;
+}
+
+- (void)test5helperMethodSimplePMPObservation
+{
+    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee.observeMe = @"Orig text";
+    
+    self.kvo = [PMPKVObservation observe:self.observee
+                                observer:self
+                                selector:@selector(test5ObservationViaSelecterForObservation:changes:)
+                                 keyPath:@"observeMe"
+                                 options:0];
+        
+    self.observee.observeMe = @"New text";
+    
+    [self checkObservationAndNext];
+}
+
+- (void)test5cleanup
+{
+    self.kvo = nil; // will remove the observation
+    self.observee = nil; // shouldn't cause any KVO warnings in console
+    
+    [self next];
+}
+
+- (void)test6ObservationViaSelecterForObject:(id)obj changes:(NSDictionary *)changes;
+{
+    NSAssert([[self currentTest] isEqualToString:@"test6helperMethodObserveeReleasedEarly"], @"received wrong kvo");
+    self.changeObserved = YES;
+}
+
+- (void)test6helperMethodObserveeReleasedEarly
+{
+    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee.observeMe = @"Orig text";
+    
+    self.kvo = [PMPKVObservation observe:self.observee
+                                observer:self
+                                selector:@selector(test6ObservationViaSelecterForObject:changes:)
+                                 keyPath:@"observeMe"
+                                 options:0];
+    
+    self.observee.observeMe = @"New text";
+    
+    [self checkObservationAndNext];
+}
+
+- (void)test6cleanup
+{
+    self.observee = nil; // would cause KVO warning if not for the swizzled dealloc on observee
+    self.kvo = nil; // would crash if not for the swizzled dealloc on observee
+    
+    [self next];
+}
+
+- (void)test7helperMethodSimpleBlockObservation
+{
+    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee.observeMe = @"Orig text";
+    
+    __block typeof(self) _self = self;
+    
+    self.kvo = [PMPKVObservation observe:self.observee
+                                 keyPath:@"observeMe"
+                                 options:0
+                                callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                    NSAssert([[_self currentTest] isEqualToString:@"test7helperMethodSimpleBlockObservation"], @"received wrong kvo");
+                                    _self.changeObserved = YES;
+                                }];
+        
+    self.observee.observeMe = @"New text";
+    
+    //[self checkObservationAndNext];
+    [self next];
+}
+
+- (void)test7cleanup
 {
     self.kvo = nil; // will remove the observation
     self.observee = nil; // shouldn't cause any KVO warnings in console

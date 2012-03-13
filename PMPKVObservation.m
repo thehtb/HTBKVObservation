@@ -31,6 +31,50 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 @synthesize options=_options;
 @synthesize isValid=_isValid;
 
++ (PMPKVObservation *)observe:(id)observee 
+                     observer:(id)observer 
+                     selector:(SEL)selector
+                      keyPath:(NSString *)keyPath
+                      options:(NSKeyValueObservingOptions)options
+{
+    PMPKVObservation * obj = [[[self alloc] init] autorelease];
+    
+    obj.observee = observee;
+    obj.observer = observer;
+    obj.selector = selector;
+    obj.keyPath = keyPath;
+    obj.options = options;
+    
+    if ([obj observe])
+        return obj;
+    
+    [obj release];
+    
+    return nil;
+}
+
++ (PMPKVObservation *)observe:(id)observee 
+                      keyPath:(NSString *)keyPath
+                      options:(NSKeyValueObservingOptions)options
+                     callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
+{
+    PMPKVObservation * obj = [[[self alloc] init] autorelease];
+    
+    obj.observee = observee;
+    obj.callbackBlock = callbackBlock;
+    obj.keyPath = keyPath;
+    obj.options = options;
+    
+    if ([obj observe])
+        return obj;
+    
+    [obj release];
+    
+    return nil;
+
+}
+
+
 - (id)init
 {
     if ((self = [super init]))
@@ -95,7 +139,7 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
                                                               
                                                               for (PMPKVObservation * observation in observeeObserverTrackingHashTable)
                                                               {
-                                                                  NSLog(@"Invalidating an observer in the swizzled dealloc");
+                                                                  //NSLog(@"Invalidating an observer in the swizzled dealloc");
                                                                   [observation _invalidateAndRemoveTargetAssociations:NO];
                                                               }
                                                           }
