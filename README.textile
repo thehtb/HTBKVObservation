@@ -1,4 +1,4 @@
-h1. PMPKVO - Yet Another KVO-improvement project
+h1. PMPKVObservation - Yet Another KVO-improvement project
 
 h2. Synopsis
 
@@ -68,7 +68,7 @@ p. It was clear that the dealloc swizzling approach of Mike Ash's "MAKVONotifica
 
 p. Except it's not quite that simple because you still need to swizzle the dealloc of the observed object since it can go away at any time. And as much as I love a good macro as much as the next hacker, Joachim's @$depends()@ macro looks about as much fun as a "turing complete makefile":http://okmij.org/ftp/Computation/Make-functional.txt .
 
-p. Enter PMPKVO!
+p. Enter PMPKVObservation!
 
 h2. Author
 
