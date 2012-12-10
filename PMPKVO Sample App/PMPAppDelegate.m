@@ -12,7 +12,7 @@
 
 @interface PMPAppDelegate ()
 
-@property (retain) PMPKVOTests * tests;
+@property (strong) PMPKVOTests * tests;
 
 @end
 
@@ -22,14 +22,9 @@
 @synthesize window = _window;
 @synthesize tests;
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.tests = [[[PMPKVOTests alloc] init] autorelease];
+    self.tests = [[PMPKVOTests alloc] init];
     [self.tests runTests];
 }
 

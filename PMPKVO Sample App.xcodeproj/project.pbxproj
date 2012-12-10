@@ -273,9 +273,11 @@
 		64A0845B150D7DF200BE94AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
 				INFOPLIST_FILE = "PMPKVO Sample App/PMPKVO Sample App-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -284,9 +286,11 @@
 		64A0845C150D7DF200BE94AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
 				INFOPLIST_FILE = "PMPKVO Sample App/PMPKVO Sample App-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
