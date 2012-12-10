@@ -171,12 +171,22 @@
     }
     else
     {
+
+#if TARGET_OS_IPHONE
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tests complete"
+                                                         message:@"Make sure you check the logs for KVO warnings"
+                                                        delegate:nil
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:@"Cool", nil];
+        [alert show];
+#else
         NSAlert * alert = [NSAlert alertWithMessageText:@"Tests complete"
                                           defaultButton:@"Cool"
                                         alternateButton:nil
                                             otherButton:nil
                               informativeTextWithFormat:@"Make sure you check the logs for KVO warnings"];
         [alert runModal];
+#endif
     }
 }
 

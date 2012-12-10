@@ -21,15 +21,6 @@ bc.. #import "PMPKVObservation.h"
         changes);
 }
 
-- (void)selectorObservation
-{
-    self.kvo = [PMPKVObservation observe:anObjectToObserve
-                                observer:self
-                                selector:@selector(observationFired:changes:)
-                                 keyPath:@"observeMe"
-                                 options:0];
-}
-
 - (void)blockObservation
 {
     self.kvo = [PMPKVObservation observe:anObjectToObserve
@@ -59,8 +50,7 @@ p. Unlike MAKVONotificationCenter and others, you are responsible for managing t
 h2. Caveats
 
 # While I am using this in a client project, that project has not yet shipped so I can't promise wide-spread testing. Take a look at the tests in the test app and if you are using scenarios that you don't thing are tested pull requests are welcome!
-# I haven't tried this under ARC, but I think I've made PMPKVObservation.m so it will compile and work as-is (the same can't be said for the test app). Please let me know how you go.
-# No attempt is made to stop you changing the observed object etc. after creation, but doing so isn't going to be very effective...
+# It now requires ARC. It is most tested under MacOS 10.8 but supports 10.7 and up and iOS 5 and up (there are test apps for both MacOS 10.7 and iOS 5).
 
 h2. Background
 
