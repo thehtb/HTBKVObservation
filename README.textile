@@ -7,22 +7,34 @@ p. Include PMPKVObservation.m and .h in your project
 bc.. #import "PMPKVObservation.h"
 
 @interface PMPKVOTests ()
-@property (retain) PMPKVObservation * kvo;
+@property (retain) PMPKVObservation * anObservation;
+@property (retain) NSMutableArray * multipleObservations;
 @end
 
 @implementation PMPKVOTests
 
 - (void)blockObservation
 {
-    self.kvo = [PMPKVObservation observe:anObjectToObserve
-                                 keyPath:@"observeMe"
-                                 options:0
-                                callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
-                                    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
-                                        observation.observedObject,
-                                        observation.keyPath,
-                                        changes);
-                                }];
+    self.anObservation = [PMPKVObservation observe:anObjectToObserve
+                                           keyPath:@"observeMe"
+                                           options:0
+                                          callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                              NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
+                                                  observation.observedObject,
+                                                  observation.keyPath,
+                                                  changes);
+                                          }];
+                                          
+    self.multipleObservations = [PMPKVObservation observe:anObjectToObserve
+                                      forMultipleKeyPaths:@[@"observeMe2", @"observeMe3"]
+                                                  options:0
+                                             callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                                 NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
+                                                     observation.observedObject,
+                                                     observation.keyPath,
+                                                     changes);
+                                             }];
+
 }
 
 @end
