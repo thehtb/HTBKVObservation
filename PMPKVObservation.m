@@ -43,6 +43,21 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 
 }
 
++ (NSMutableArray *)observe:(id)observedObject
+        forMultipleKeyPaths:(NSArray *)keyPaths
+                    options:(NSKeyValueObservingOptions)options
+                   callback:(void (^)(PMPKVObservation *, NSDictionary *))callbackBlock
+{
+    NSMutableArray * observations = [NSMutableArray arrayWithCapacity:[keyPaths count]];
+    
+    for (NSString * keyPath in keyPaths)
+        [observations addObject:[self observe:observedObject
+                                      keyPath:keyPath
+                                      options:options
+                                     callback:callbackBlock]];
+    
+    return observations;
+}
 
 - (id)init
 {

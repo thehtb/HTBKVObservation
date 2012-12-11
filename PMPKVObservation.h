@@ -23,6 +23,11 @@
                       options:(NSKeyValueObservingOptions)options
                      callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
 
++ (NSMutableArray *)observe:(id)observedObject
+        forMultipleKeyPaths:(NSArray *)keyPaths
+                    options:(NSKeyValueObservingOptions)options
+                   callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
+
 - (BOOL)observe; // only necessary if you alloc/init yourself
 - (void)invalidate; // not necessary if the observation object lifecycle/dealloc will go away at the appropriate time
 
