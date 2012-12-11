@@ -17,27 +17,21 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 @interface PMPKVObservation ()
 
 - (void)setIsValid:(BOOL)isValid;
-- (void)prepareObserveeObjectAndClass;
+- (void)prepareObservedObjectAndClass;
 - (void)_invalidateAndRemoveTargetAssociations:(BOOL)removeTargetAssociations;
 
 @end
 
 @implementation PMPKVObservation
 
-@synthesize observedObject=_observee;
-@synthesize callbackBlock=_callbackBlock;
-@synthesize keyPath=_keyPath;
-@synthesize options=_options;
-@synthesize isValid=_isValid;
-
-+ (PMPKVObservation *)observe:(id)observee 
++ (PMPKVObservation *)observe:(id)observedObject
                       keyPath:(NSString *)keyPath
                       options:(NSKeyValueObservingOptions)options
                      callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
 {
     PMPKVObservation * obj = [[self alloc] init];
     
-    obj.observedObject = observee;
+    obj.observedObject = observedObject;
     obj.callbackBlock = callbackBlock;
     obj.keyPath = keyPath;
     obj.options = options;
@@ -75,9 +69,9 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
     [self didChangeValueForKey:@"isValid"];
 }
 
-- (void)prepareObserveeObjectAndClass
+- (void)prepareObservedObjectAndClass
 {
-    Class class = [_observee class];
+    Class class = [self.observedObject class];
     
     @synchronized(PMPKVObservationClassIsSwizzledLockKey)
     {
@@ -118,33 +112,35 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
         
         // create the NSHashTable if needed - NSHashTable (when created as below) is bascially an NSMutableSet with weak references (doesn't require ARC)
         
-        if (!objc_getAssociatedObject(_observee, PMPKVObservationObjectObserversKey))
+        if (!objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey))
         {
+            
 #if defined(__IPHONE_6_0) || defined(__MAC_10_8)
             NSHashTable * observeeObserverTrackingHashTable = [NSHashTable weakObjectsHashTable];
 #else
             NSHashTable * observeeObserverTrackingHashTable = [NSHashTable hashTableWithWeakObjects];
 #endif
-            objc_setAssociatedObject(_observee, PMPKVObservationObjectObserversKey, observeeObserverTrackingHashTable, OBJC_ASSOCIATION_RETAIN);
+
+            objc_setAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey, observeeObserverTrackingHashTable, OBJC_ASSOCIATION_RETAIN);
         }
     }
 }
 
 - (BOOL)observe
 {
-    if (!_isValid && // can't re-observe
-        _observee &&
-        _keyPath &&
-        _callbackBlock)
+    if (!self.isValid && // can't re-observe
+        self.observedObject &&
+        self.keyPath &&
+        self.callbackBlock)
     {
         // only swizzling the target dealloc for it to remove all observers - releasing/invalidating at the observer end
         // is its own responsibility
 
-        [self prepareObserveeObjectAndClass];
+        [self prepareObservedObjectAndClass];
         
-        [_observee addObserver:self forKeyPath:_keyPath options:_options context:NULL];
+        [self.observedObject addObserver:self forKeyPath:_keyPath options:_options context:NULL];
     
-        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(_observee, PMPKVObservationObjectObserversKey);
+        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey);
         
         @synchronized(observeeObserverTrackingHashTable)
         {
@@ -175,7 +171,7 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
     
     if (removeTargetAssociations)
     {
-        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(_observee, PMPKVObservationObjectObserversKey);
+        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey);
         
         @synchronized(observeeObserverTrackingHashTable)
         {
@@ -186,10 +182,10 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([_keyPath isEqualToString:keyPath] && _observee == object)
+    if ([self.keyPath isEqualToString:keyPath] && self.observedObject == object)
     {
-        if (_callbackBlock)
-            _callbackBlock(self, change);
+        if (self.callbackBlock)
+            self.callbackBlock(self, change);
         else
             NSLog(@"PMPKVObservation: received observation but no callbackBlock is set");
     }

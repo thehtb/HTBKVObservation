@@ -18,7 +18,7 @@
 @property NSKeyValueObservingOptions options;
 @property (nonatomic, readonly) BOOL isValid;
 
-+ (PMPKVObservation *)observe:(id)observee 
++ (PMPKVObservation *)observe:(id)observedObject
                       keyPath:(NSString *)keyPath
                       options:(NSKeyValueObservingOptions)options
                      callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
