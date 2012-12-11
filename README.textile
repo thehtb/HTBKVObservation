@@ -13,14 +13,6 @@ bc.. #import "PMPKVObservation.h"
 @implementation PMPKVOTests
 @synthesize kvo = _kvo;
 
-- (void)observationFired:(PMPKVObservation *)observation changes:(NSDictionary *)changes;
-{
-    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
-        observation.observee,
-        observation.keyPath,
-        changes);
-}
-
 - (void)blockObservation
 {
     self.kvo = [PMPKVObservation observe:anObjectToObserve
