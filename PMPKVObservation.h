@@ -12,7 +12,7 @@
 
 @interface PMPKVObservation : NSObject
 
-@property (nonatomic, weak) id observee;
+@property (nonatomic, weak) id observedObject;
 @property (nonatomic, copy) void (^callbackBlock)(PMPKVObservation * observation, NSDictionary * changeDictionary);
 @property (nonatomic, copy) NSString * keyPath;
 @property NSKeyValueObservingOptions options;

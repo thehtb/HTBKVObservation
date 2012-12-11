@@ -24,7 +24,7 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 
 @implementation PMPKVObservation
 
-@synthesize observee=_observee;
+@synthesize observedObject=_observee;
 @synthesize callbackBlock=_callbackBlock;
 @synthesize keyPath=_keyPath;
 @synthesize options=_options;
@@ -37,7 +37,7 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 {
     PMPKVObservation * obj = [[self alloc] init];
     
-    obj.observee = observee;
+    obj.observedObject = observee;
     obj.callbackBlock = callbackBlock;
     obj.keyPath = keyPath;
     obj.options = options;
@@ -171,7 +171,7 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
     
     [self setIsValid:NO];
     
-    [[self observee] removeObserver:self forKeyPath:self.keyPath];
+    [[self observedObject] removeObserver:self forKeyPath:self.keyPath];
     
     if (removeTargetAssociations)
     {

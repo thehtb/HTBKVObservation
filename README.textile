@@ -19,7 +19,7 @@ bc.. #import "PMPKVObservation.h"
                                  options:0
                                 callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
                                     NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
-                                        observation.observee,
+                                        observation.observedObject,
                                         observation.keyPath,
                                         changes);
                                 }];

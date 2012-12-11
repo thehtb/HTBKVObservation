@@ -78,7 +78,7 @@
     self.observee.observeMe = @"Orig text";
     
     self.kvo = [[PMPKVObservation alloc] init];
-    self.kvo.observee = self.observee;
+    self.kvo.observedObject = self.observee;
     self.kvo.keyPath = @"observeMe";
     
     __weak PMPKVOTests * _self = self;
