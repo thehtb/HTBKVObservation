@@ -58,6 +58,11 @@ p. Except it's not quite that simple because you still need to swizzle the deall
 
 p. Enter PMPKVObservation!
 
+h2. Changelog
+
+* v0.1 : first version tag created for CocoaPods user happiness
+* v0.2 : Now requires ARC, and consequently the target/action API was removed in favour of the block based API.
+
 h2. Author
 
 p. Mark Aufflick ("mark@aufflick.com":mailto:mark@aufflick.com)
