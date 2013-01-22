@@ -7,47 +7,34 @@ p. Include PMPKVObservation.m and .h in your project
 bc.. #import "PMPKVObservation.h"
 
 @interface PMPKVOTests ()
-@property (retain) PMPKVObservation * kvo;
+@property (retain) PMPKVObservation * anObservation;
+@property (retain) NSMutableArray * multipleObservations;
 @end
 
 @implementation PMPKVOTests
-@synthesize kvo = _kvo;
-
-- (void)observationFired:(PMPKVObservation *)observation changes:(NSDictionary *)changes;
-{
-    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
-        observation.observee,
-        observation.keyPath,
-        changes);
-}
-
-- (void)selectorObservation
-{
-    self.kvo = [PMPKVObservation observe:anObjectToObserve
-                                observer:self
-                                selector:@selector(observationFired:changes:)
-                                 keyPath:@"observeMe"
-                                 options:0];
-}
 
 - (void)blockObservation
 {
-    self.kvo = [PMPKVObservation observe:anObjectToObserve
-                                 keyPath:@"observeMe"
-                                 options:0
-                                callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
-                                    NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
-                                        observation.observee,
-                                        observation.keyPath,
-                                        changes);
-                                }];
-}
+    self.anObservation = [PMPKVObservation observe:anObjectToObserve
+                                           keyPath:@"observeMe"
+                                           options:0
+                                          callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                              NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
+                                                  observation.observedObject,
+                                                  observation.keyPath,
+                                                  changes);
+                                          }];
+                                          
+    self.multipleObservations = [PMPKVObservation observe:anObjectToObserve
+                                      forMultipleKeyPaths:@[@"observeMe2", @"observeMe3"]
+                                                  options:0
+                                             callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                                 NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
+                                                     observation.observedObject,
+                                                     observation.keyPath,
+                                                     changes);
+                                             }];
 
-- (void)dealloc
-{
-   [ _kvo release];
-
-   [super dealloc];
 }
 
 @end
@@ -59,8 +46,7 @@ p. Unlike MAKVONotificationCenter and others, you are responsible for managing t
 h2. Caveats
 
 # While I am using this in a client project, that project has not yet shipped so I can't promise wide-spread testing. Take a look at the tests in the test app and if you are using scenarios that you don't thing are tested pull requests are welcome!
-# I haven't tried this under ARC, but I think I've made PMPKVObservation.m so it will compile and work as-is (the same can't be said for the test app). Please let me know how you go.
-# No attempt is made to stop you changing the observed object etc. after creation, but doing so isn't going to be very effective...
+# It now requires ARC. It is most tested under MacOS 10.8 but supports 10.7 and up and iOS 5 and up (there are test apps for both MacOS 10.7 and iOS 5).
 
 h2. Background
 
@@ -71,6 +57,11 @@ p. It was clear that the dealloc swizzling approach of Mike Ash's "MAKVONotifica
 p. Except it's not quite that simple because you still need to swizzle the dealloc of the observed object since it can go away at any time. And as much as I love a good macro as much as the next hacker, Joachim's @$depends()@ macro looks about as much fun as a "turing complete makefile":http://okmij.org/ftp/Computation/Make-functional.txt .
 
 p. Enter PMPKVObservation!
+
+h2. Changelog
+
+* v0.1 : first version tag created for CocoaPods user happiness
+* v0.2 : Now requires ARC, and consequently the target/action API was removed in favour of the block based API.
 
 h2. Author
 

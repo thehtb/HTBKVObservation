@@ -10,7 +10,7 @@
 
 @interface PMPAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSWindow *window;
 
 - (IBAction)reRunTests:(id)sender;
 

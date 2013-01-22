@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		644C5D2D1676ACE700436A9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D2C1676ACE700436A9A /* UIKit.framework */; };
+		644C5D2F1676ACE700436A9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D2E1676ACE700436A9A /* Foundation.framework */; };
+		644C5D311676ACE700436A9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D301676ACE700436A9A /* CoreGraphics.framework */; };
+		644C5D371676ACE700436A9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D351676ACE700436A9A /* InfoPlist.strings */; };
+		644C5D391676ACE700436A9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D381676ACE700436A9A /* main.m */; };
+		644C5D3D1676ACE700436A9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D3C1676ACE700436A9A /* AppDelegate.m */; };
+		644C5D3F1676ACE700436A9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D3E1676ACE700436A9A /* Default.png */; };
+		644C5D411676ACE700436A9A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D401676ACE700436A9A /* Default@2x.png */; };
+		644C5D431676ACE700436A9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D421676ACE700436A9A /* Default-568h@2x.png */; };
+		644C5D461676ACE700436A9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D451676ACE700436A9A /* ViewController.m */; };
+		644C5D491676ACE700436A9A /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D471676ACE700436A9A /* ViewController.xib */; };
+		644C5D4E1676AD0200436A9A /* PMPKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* PMPKVOTests.m */; };
+		644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
+		644C5D501676AE4600436A9A /* PMPKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* PMPKVObservation.m */; };
 		64A0842D150D7DF200BE94AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0842C150D7DF200BE94AC /* Cocoa.framework */; };
 		64A08437150D7DF200BE94AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A08435150D7DF200BE94AC /* InfoPlist.strings */; };
 		64A08439150D7DF200BE94AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08438150D7DF200BE94AC /* main.m */; };
@@ -20,6 +34,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		644C5D2A1676ACE700436A9A /* PMPKVO Sample iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PMPKVO Sample iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		644C5D2C1676ACE700436A9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		644C5D2E1676ACE700436A9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		644C5D301676ACE700436A9A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		644C5D341676ACE700436A9A /* PMPKVO Sample iOS App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PMPKVO Sample iOS App-Info.plist"; sourceTree = "<group>"; };
+		644C5D361676ACE700436A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		644C5D381676ACE700436A9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		644C5D3A1676ACE700436A9A /* PMPKVO Sample iOS App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PMPKVO Sample iOS App-Prefix.pch"; sourceTree = "<group>"; };
+		644C5D3B1676ACE700436A9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		644C5D3C1676ACE700436A9A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		644C5D3E1676ACE700436A9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		644C5D401676ACE700436A9A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		644C5D421676ACE700436A9A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		644C5D441676ACE700436A9A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		644C5D451676ACE700436A9A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		644C5D481676ACE700436A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PMPKVO Sample App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0842C150D7DF200BE94AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64A0842F150D7DF200BE94AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -38,12 +68,22 @@
 		64A08462150D7E2500BE94AC /* PMPKVObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVObservation.m; sourceTree = "<group>"; };
 		64A08464150D7EE000BE94AC /* TestObservee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestObservee.h; path = "PMPKVO Sample App/TestObservee.h"; sourceTree = SOURCE_ROOT; };
 		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; };
-		64A0846B150D890B00BE94AC /* PMPKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPKVOTests.h; sourceTree = "<group>"; };
-		64A0846C150D890B00BE94AC /* PMPKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPKVOTests.m; sourceTree = "<group>"; };
+		64A0846B150D890B00BE94AC /* PMPKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMPKVOTests.h; path = "PMPKVO Sample App/PMPKVOTests.h"; sourceTree = "<group>"; };
+		64A0846C150D890B00BE94AC /* PMPKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PMPKVOTests.m; path = "PMPKVO Sample App/PMPKVOTests.m"; sourceTree = "<group>"; };
 		64EA06A2150ED2DA00E0934C /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		644C5D271676ACE700436A9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				644C5D2D1676ACE700436A9A /* UIKit.framework in Frameworks */,
+				644C5D2F1676ACE700436A9A /* Foundation.framework in Frameworks */,
+				644C5D311676ACE700436A9A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64A08425150D7DF200BE94AC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,13 +95,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		644C5D321676ACE700436A9A /* PMPKVO Sample iOS App */ = {
+			isa = PBXGroup;
+			children = (
+				644C5D3B1676ACE700436A9A /* AppDelegate.h */,
+				644C5D3C1676ACE700436A9A /* AppDelegate.m */,
+				644C5D441676ACE700436A9A /* ViewController.h */,
+				644C5D451676ACE700436A9A /* ViewController.m */,
+				644C5D471676ACE700436A9A /* ViewController.xib */,
+				644C5D331676ACE700436A9A /* Supporting Files */,
+			);
+			path = "PMPKVO Sample iOS App";
+			sourceTree = "<group>";
+		};
+		644C5D331676ACE700436A9A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				644C5D341676ACE700436A9A /* PMPKVO Sample iOS App-Info.plist */,
+				644C5D351676ACE700436A9A /* InfoPlist.strings */,
+				644C5D381676ACE700436A9A /* main.m */,
+				644C5D3A1676ACE700436A9A /* PMPKVO Sample iOS App-Prefix.pch */,
+				644C5D3E1676ACE700436A9A /* Default.png */,
+				644C5D401676ACE700436A9A /* Default@2x.png */,
+				644C5D421676ACE700436A9A /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		644C5D4D1676ACF200436A9A /* Shared Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				64A0846B150D890B00BE94AC /* PMPKVOTests.h */,
+				64A0846C150D890B00BE94AC /* PMPKVOTests.m */,
+				64A08464150D7EE000BE94AC /* TestObservee.h */,
+				64A08465150D7EE000BE94AC /* TestObservee.m */,
+			);
+			name = "Shared Test Classes";
+			sourceTree = "<group>";
+		};
 		64A0841D150D7DF100BE94AC = {
 			isa = PBXGroup;
 			children = (
 				64EA06A2150ED2DA00E0934C /* README.textile */,
 				64A08461150D7E2500BE94AC /* PMPKVObservation.h */,
 				64A08462150D7E2500BE94AC /* PMPKVObservation.m */,
+				644C5D4D1676ACF200436A9A /* Shared Test Classes */,
 				64A08432150D7DF200BE94AC /* PMPKVO Sample App */,
+				644C5D321676ACE700436A9A /* PMPKVO Sample iOS App */,
 				64A0842B150D7DF200BE94AC /* Frameworks */,
 				64A08429150D7DF200BE94AC /* Products */,
 			);
@@ -71,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */,
+				644C5D2A1676ACE700436A9A /* PMPKVO Sample iOS App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +161,9 @@
 			children = (
 				64A0842C150D7DF200BE94AC /* Cocoa.framework */,
 				64A0844A150D7DF200BE94AC /* SenTestingKit.framework */,
+				644C5D2C1676ACE700436A9A /* UIKit.framework */,
+				644C5D2E1676ACE700436A9A /* Foundation.framework */,
+				644C5D301676ACE700436A9A /* CoreGraphics.framework */,
 				64A0842E150D7DF200BE94AC /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -102,10 +186,6 @@
 				64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */,
 				64A08441150D7DF200BE94AC /* MainMenu.xib */,
 				64A08433150D7DF200BE94AC /* Supporting Files */,
-				64A0846B150D890B00BE94AC /* PMPKVOTests.h */,
-				64A0846C150D890B00BE94AC /* PMPKVOTests.m */,
-				64A08464150D7EE000BE94AC /* TestObservee.h */,
-				64A08465150D7EE000BE94AC /* TestObservee.m */,
 			);
 			path = "PMPKVO Sample App";
 			sourceTree = "<group>";
@@ -125,6 +205,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		644C5D291676ACE700436A9A /* PMPKVO Sample iOS App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 644C5D4A1676ACE700436A9A /* Build configuration list for PBXNativeTarget "PMPKVO Sample iOS App" */;
+			buildPhases = (
+				644C5D261676ACE700436A9A /* Sources */,
+				644C5D271676ACE700436A9A /* Frameworks */,
+				644C5D281676ACE700436A9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PMPKVO Sample iOS App";
+			productName = "PMPKVO Sample iOS App";
+			productReference = 644C5D2A1676ACE700436A9A /* PMPKVO Sample iOS App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		64A08427150D7DF200BE94AC /* PMPKVO Sample App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64A0845A150D7DF200BE94AC /* Build configuration list for PBXNativeTarget "PMPKVO Sample App" */;
@@ -164,11 +261,24 @@
 			projectRoot = "";
 			targets = (
 				64A08427150D7DF200BE94AC /* PMPKVO Sample App */,
+				644C5D291676ACE700436A9A /* PMPKVO Sample iOS App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		644C5D281676ACE700436A9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				644C5D371676ACE700436A9A /* InfoPlist.strings in Resources */,
+				644C5D3F1676ACE700436A9A /* Default.png in Resources */,
+				644C5D411676ACE700436A9A /* Default@2x.png in Resources */,
+				644C5D431676ACE700436A9A /* Default-568h@2x.png in Resources */,
+				644C5D491676ACE700436A9A /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64A08426150D7DF200BE94AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +293,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		644C5D261676ACE700436A9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				644C5D391676ACE700436A9A /* main.m in Sources */,
+				644C5D3D1676ACE700436A9A /* AppDelegate.m in Sources */,
+				644C5D461676ACE700436A9A /* ViewController.m in Sources */,
+				644C5D4E1676AD0200436A9A /* PMPKVOTests.m in Sources */,
+				644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */,
+				644C5D501676AE4600436A9A /* PMPKVObservation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64A08424150D7DF200BE94AC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +321,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		644C5D351676ACE700436A9A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				644C5D361676ACE700436A9A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		644C5D471676ACE700436A9A /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				644C5D481676ACE700436A9A /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
 		64A08435150D7DF200BE94AC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -225,6 +364,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		644C5D4B1676ACE700436A9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PMPKVO Sample iOS App/PMPKVO Sample iOS App-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "PMPKVO Sample iOS App/PMPKVO Sample iOS App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		644C5D4C1676ACE700436A9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PMPKVO Sample iOS App/PMPKVO Sample iOS App-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "PMPKVO Sample iOS App/PMPKVO Sample iOS App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		64A08458150D7DF200BE94AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -273,9 +464,11 @@
 		64A0845B150D7DF200BE94AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
 				INFOPLIST_FILE = "PMPKVO Sample App/PMPKVO Sample App-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -284,9 +477,11 @@
 		64A0845C150D7DF200BE94AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
 				INFOPLIST_FILE = "PMPKVO Sample App/PMPKVO Sample App-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -295,6 +490,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		644C5D4A1676ACE700436A9A /* Build configuration list for PBXNativeTarget "PMPKVO Sample iOS App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				644C5D4B1676ACE700436A9A /* Debug */,
+				644C5D4C1676ACE700436A9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		64A08422150D7DF100BE94AC /* Build configuration list for PBXProject "PMPKVO Sample App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

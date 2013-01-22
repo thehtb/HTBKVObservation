@@ -10,57 +10,28 @@
 
 #import <objc/runtime.h>
 
-const NSString * PMPKVObservationClassIsSwizzledKey = @"PMPKVObservationClassIsSwizzledKey";
-const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectObserversKey";
+const char * PMPKVObservationClassIsSwizzledKey = "PMPKVObservationClassIsSwizzledKey";
+const NSString * PMPKVObservationClassIsSwizzledLockKey = @"PMPKVObservationClassIsSwizzledLockKey";
+const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserversKey";
 
 @interface PMPKVObservation ()
 
 - (void)setIsValid:(BOOL)isValid;
-- (void)prepareObserveeObjectAndClass;
+- (void)prepareObservedObjectAndClass;
 - (void)_invalidateAndRemoveTargetAssociations:(BOOL)removeTargetAssociations;
 
 @end
 
 @implementation PMPKVObservation
 
-@synthesize observee=_observee;
-@synthesize observer=_observer;
-@synthesize selector=_selector;
-@synthesize callbackBlock=_callbackBlock;
-@synthesize keyPath=_keyPath;
-@synthesize options=_options;
-@synthesize isValid=_isValid;
-
-+ (PMPKVObservation *)observe:(id)observee 
-                     observer:(id)observer 
-                     selector:(SEL)selector
-                      keyPath:(NSString *)keyPath
-                      options:(NSKeyValueObservingOptions)options
-{
-    PMPKVObservation * obj = [[[self alloc] init] autorelease];
-    
-    obj.observee = observee;
-    obj.observer = observer;
-    obj.selector = selector;
-    obj.keyPath = keyPath;
-    obj.options = options;
-    
-    if ([obj observe])
-        return obj;
-    
-    [obj release];
-    
-    return nil;
-}
-
-+ (PMPKVObservation *)observe:(id)observee 
++ (PMPKVObservation *)observe:(id)observedObject
                       keyPath:(NSString *)keyPath
                       options:(NSKeyValueObservingOptions)options
                      callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
 {
-    PMPKVObservation * obj = [[[self alloc] init] autorelease];
+    PMPKVObservation * obj = [[self alloc] init];
     
-    obj.observee = observee;
+    obj.observedObject = observedObject;
     obj.callbackBlock = callbackBlock;
     obj.keyPath = keyPath;
     obj.options = options;
@@ -68,12 +39,25 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
     if ([obj observe])
         return obj;
     
-    [obj release];
-    
     return nil;
 
 }
 
++ (NSMutableArray *)observe:(id)observedObject
+        forMultipleKeyPaths:(NSArray *)keyPaths
+                    options:(NSKeyValueObservingOptions)options
+                   callback:(void (^)(PMPKVObservation *, NSDictionary *))callbackBlock
+{
+    NSMutableArray * observations = [NSMutableArray arrayWithCapacity:[keyPaths count]];
+    
+    for (NSString * keyPath in keyPaths)
+        [observations addObject:[self observe:observedObject
+                                      keyPath:keyPath
+                                      options:options
+                                     callback:callbackBlock]];
+    
+    return observations;
+}
 
 - (id)init
 {
@@ -88,18 +72,6 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 - (void)dealloc
 {
     [self invalidate];
-
-#if ! __has_feature(objc_arc)
-    [_keyPath release];
-    [_callbackBlock release];
-#endif
-    
-    _keyPath = nil;
-    _callbackBlock = nil;
-    
-#if ! __has_feature(objc_arc)
-    [super dealloc];
-#endif
 }
 
 - (void)setIsValid:(BOOL)isValid
@@ -112,11 +84,11 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
     [self didChangeValueForKey:@"isValid"];
 }
 
-- (void)prepareObserveeObjectAndClass
+- (void)prepareObservedObjectAndClass
 {
-    Class class = [_observee class];
+    Class class = [self.observedObject class];
     
-    @synchronized(PMPKVObservationClassIsSwizzledKey)
+    @synchronized(PMPKVObservationClassIsSwizzledLockKey)
     {
         NSNumber * classIsSwizzled = objc_getAssociatedObject(class, PMPKVObservationClassIsSwizzledKey);
         if (!classIsSwizzled)
@@ -124,27 +96,29 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
             SEL deallocSel = NSSelectorFromString(@"dealloc");
             Method dealloc = class_getInstanceMethod(class, deallocSel);
             IMP origImpl = method_getImplementation(dealloc);
-            IMP newImpl = imp_implementationWithBlock((__bridge void *)^ (void *obj)
-                                                      {
-                                                          @autoreleasepool
-                                                          {
-                                                              // I guess there is a possible race condition here with an observation being added *during* dealloc.
-                                                              // The copy means we won't crash here, but I imagine the observation will fail.
-                                                              
-                                                              NSHashTable * observeeObserverTrackingHashTable;
-                                                              @synchronized(observeeObserverTrackingHashTable)
-                                                              {
-                                                                  observeeObserverTrackingHashTable = [objc_getAssociatedObject(obj, PMPKVObservationObjectObserversKey) copy];
-                                                              }
-                                                              
-                                                              for (PMPKVObservation * observation in observeeObserverTrackingHashTable)
-                                                              {
-                                                                  //NSLog(@"Invalidating an observer in the swizzled dealloc");
-                                                                  [observation _invalidateAndRemoveTargetAssociations:NO];
-                                                              }
-                                                          }
-                                                          ((void (*)(void *, SEL))origImpl)(obj, deallocSel);
-                                                      });
+            id block = ^ (void *obj)
+            {
+                @autoreleasepool
+                {
+                    // I guess there is a possible race condition here with an observation being added *during* dealloc.
+                    // The copy means we won't crash here, but I imagine the observation will fail.
+                    
+                    NSHashTable * observeeObserverTrackingHashTable;
+                    @synchronized(observeeObserverTrackingHashTable)
+                    {
+                        observeeObserverTrackingHashTable = [objc_getAssociatedObject((__bridge id)obj, PMPKVObservationObjectObserversKey) copy];
+                    }
+                    
+                    for (PMPKVObservation * observation in observeeObserverTrackingHashTable)
+                    {
+                        //NSLog(@"Invalidating an observer in the swizzled dealloc");
+                        [observation _invalidateAndRemoveTargetAssociations:NO];
+                    }
+                }
+                ((void (*)(void *, SEL))origImpl)(obj, deallocSel);
+            };
+            
+            IMP newImpl = imp_implementationWithBlock(block);
             
             class_replaceMethod(class, deallocSel, newImpl, method_getTypeEncoding(dealloc));
             
@@ -153,29 +127,35 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
         
         // create the NSHashTable if needed - NSHashTable (when created as below) is bascially an NSMutableSet with weak references (doesn't require ARC)
         
-        if (!objc_getAssociatedObject(_observee, PMPKVObservationObjectObserversKey))
+        if (!objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey))
         {
+            
+#if defined(__IPHONE_6_0) || defined(__MAC_10_8)
+            NSHashTable * observeeObserverTrackingHashTable = [NSHashTable weakObjectsHashTable];
+#else
             NSHashTable * observeeObserverTrackingHashTable = [NSHashTable hashTableWithWeakObjects];
-            objc_setAssociatedObject(_observee, PMPKVObservationObjectObserversKey, observeeObserverTrackingHashTable, OBJC_ASSOCIATION_RETAIN);
+#endif
+
+            objc_setAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey, observeeObserverTrackingHashTable, OBJC_ASSOCIATION_RETAIN);
         }
     }
 }
 
 - (BOOL)observe
 {
-    if (!_isValid && // can't re-observe
-        _observee &&
-        _keyPath &&
-        ((_observer && _selector) || _callbackBlock))
+    if (!self.isValid && // can't re-observe
+        self.observedObject &&
+        self.keyPath &&
+        self.callbackBlock)
     {
         // only swizzling the target dealloc for it to remove all observers - releasing/invalidating at the observer end
         // is its own responsibility
 
-        [self prepareObserveeObjectAndClass];
+        [self prepareObservedObjectAndClass];
         
-        [_observee addObserver:self forKeyPath:_keyPath options:_options context:NULL];
+        [self.observedObject addObserver:self forKeyPath:_keyPath options:_options context:NULL];
     
-        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(_observee, PMPKVObservationObjectObserversKey);
+        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey);
         
         @synchronized(observeeObserverTrackingHashTable)
         {
@@ -202,11 +182,11 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
     
     [self setIsValid:NO];
     
-    [[self observee] removeObserver:self forKeyPath:self.keyPath];
+    [[self observedObject] removeObserver:self forKeyPath:self.keyPath];
     
     if (removeTargetAssociations)
     {
-        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(_observee, PMPKVObservationObjectObserversKey);
+        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey);
         
         @synchronized(observeeObserverTrackingHashTable)
         {
@@ -217,17 +197,18 @@ const NSString * PMPKVObservationObjectObserversKey = @"PMPKVObservationObjectOb
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([_keyPath isEqualToString:keyPath] && _observee == object)
+    if ([self.keyPath isEqualToString:keyPath] && self.observedObject == object)
     {
-        if (_callbackBlock)
-            _callbackBlock(self, change);
+        if (self.callbackBlock)
+            self.callbackBlock(self, change);
         else
-            [_observer performSelector:_selector withObject:self withObject:change];
+            NSLog(@"PMPKVObservation: received observation but no callbackBlock is set");
     }
     else
     {
         NSLog(@"PMPKVObservation: received observation for unexpected keyPath (%@) or object (%@)", keyPath, object);
     }
 }
+
 
 @end

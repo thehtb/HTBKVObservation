@@ -10,6 +10,6 @@
 
 @interface TestObservee : NSObject
 
-@property (retain) NSString * observeMe;
+@property (strong) NSString * observeMe;
 
 @end

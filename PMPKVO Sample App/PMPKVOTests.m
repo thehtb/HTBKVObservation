@@ -13,11 +13,11 @@
 
 @interface PMPKVOTests ()
 
-@property (retain) TestObservee * observee;
+@property (strong) TestObservee * observee;
 @property BOOL changeObserved;
-@property (readonly) NSArray * testSelectors;
+@property (strong, readonly) NSArray * testSelectors;
 @property NSInteger currentTestSelectorIndex;
-@property (retain) PMPKVObservation * kvo;
+@property (strong) PMPKVObservation * kvo;
 
 - (void)next;
 - (void)checkObservationAndNext;
@@ -38,24 +38,16 @@
     return [NSArray arrayWithObjects:
             @"test1NormalKVO",
             @"test1cleanup",
-            @"test2simplePMPObservation",
-            @"test2cleanup",
-            @"test3ObserveeReleasedEarly",
-            @"test3cleanup",
             @"test4simpleBlockObservation",
             @"test4cleanup",
-            @"test5helperMethodSimplePMPObservation",
+            @"test5helperMethodSimpleBlockObservation",
             @"test5cleanup",
-            @"test6helperMethodObserveeReleasedEarly",
-            @"test6cleanup",
-            @"test7helperMethodSimpleBlockObservation",
-            @"test7cleanup",
             nil];
 }
 
 - (void)test1NormalKVO
 {
-    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Orig text";
     
     [self.observee addObserver:self forKeyPath:@"observeMe" options:0 context:(void *)1];
@@ -80,84 +72,24 @@
     [self next];
 }
 
-- (void)test2ObservationViaSelecterForObservation:(id)obs changes:(NSDictionary *)changes;
-{
-    NSAssert([[self currentTest] isEqualToString:@"test2simplePMPObservation"], @"received wrong kvo");
-    self.changeObserved = YES;
-}
-
-- (void)test2simplePMPObservation
-{
-    self.observee = [[[TestObservee alloc] init] autorelease];
-    self.observee.observeMe = @"Orig text";
-    
-    self.kvo = [[[PMPKVObservation alloc] init] autorelease];
-    self.kvo.observee = self.observee;
-    self.kvo.observer = self;
-    self.kvo.keyPath = @"observeMe";
-    self.kvo.selector = @selector(test2ObservationViaSelecterForObservation:changes:);
-    
-    [self.kvo observe];
-    
-    self.observee.observeMe = @"New text";
-    
-    [self checkObservationAndNext];
-}
-
-- (void)test2cleanup
-{
-    self.kvo = nil; // will remove the observation
-    self.observee = nil; // shouldn't cause any KVO warnings in console
-    
-    [self next];
-}
-
-- (void)test3ObservationViaSelecterForObject:(id)obj changes:(NSDictionary *)changes;
-{
-    NSAssert([[self currentTest] isEqualToString:@"test3ObserveeReleasedEarly"], @"received wrong kvo");
-    self.changeObserved = YES;
-}
-
-- (void)test3ObserveeReleasedEarly
-{
-    self.observee = [[[TestObservee alloc] init] autorelease];
-    self.observee.observeMe = @"Orig text";
-    
-    self.kvo = [[[PMPKVObservation alloc] init] autorelease];
-    self.kvo.observee = self.observee;
-    self.kvo.observer = self;
-    self.kvo.keyPath = @"observeMe";
-    self.kvo.selector = @selector(test3ObservationViaSelecterForObject:changes:);
-    
-    [self.kvo observe];
-    
-    self.observee.observeMe = @"New text";
-    
-    [self checkObservationAndNext];
-}
-
-- (void)test3cleanup
-{
-    self.observee = nil; // would cause KVO warning if not for the swizzled dealloc on observee
-    self.kvo = nil; // would crash if not for the swizzled dealloc on observee
-    
-    [self next];
-}
-
 - (void)test4simpleBlockObservation
 {
-    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Orig text";
     
-    self.kvo = [[[PMPKVObservation alloc] init] autorelease];
-    self.kvo.observee = self.observee;
+    self.kvo = [[PMPKVObservation alloc] init];
+    self.kvo.observedObject = self.observee;
     self.kvo.keyPath = @"observeMe";
     
-    __block typeof(self) _self = self;
+    __weak PMPKVOTests * _self = self;
     
     [self.kvo setCallbackBlock:^(PMPKVObservation * obs, NSDictionary * change) {
-        NSAssert([[_self currentTest] isEqualToString:@"test4simpleBlockObservation"], @"received wrong kvo");
-        _self.changeObserved = YES;
+        // NSAssert causes a self retain cycle :(
+        if (! [[_self currentTest] isEqualToString:@"test4simpleBlockObservation"])
+        {
+            NSLog(@"received wrong kvo");
+            [NSException raise:@"received wrong kvo" format:NULL];
+        }
     }];
     
     [self.kvo observe];
@@ -176,69 +108,9 @@
     [self next];
 }
 
-- (void)test5ObservationViaSelecterForObservation:(id)obs changes:(NSDictionary *)changes;
+- (void)test5helperMethodSimpleBlockObservation
 {
-    NSAssert([[self currentTest] isEqualToString:@"test5helperMethodSimplePMPObservation"], @"received wrong kvo");
-    self.changeObserved = YES;
-}
-
-- (void)test5helperMethodSimplePMPObservation
-{
-    self.observee = [[[TestObservee alloc] init] autorelease];
-    self.observee.observeMe = @"Orig text";
-    
-    self.kvo = [PMPKVObservation observe:self.observee
-                                observer:self
-                                selector:@selector(test5ObservationViaSelecterForObservation:changes:)
-                                 keyPath:@"observeMe"
-                                 options:0];
-        
-    self.observee.observeMe = @"New text";
-    
-    [self checkObservationAndNext];
-}
-
-- (void)test5cleanup
-{
-    self.kvo = nil; // will remove the observation
-    self.observee = nil; // shouldn't cause any KVO warnings in console
-    
-    [self next];
-}
-
-- (void)test6ObservationViaSelecterForObject:(id)obj changes:(NSDictionary *)changes;
-{
-    NSAssert([[self currentTest] isEqualToString:@"test6helperMethodObserveeReleasedEarly"], @"received wrong kvo");
-    self.changeObserved = YES;
-}
-
-- (void)test6helperMethodObserveeReleasedEarly
-{
-    self.observee = [[[TestObservee alloc] init] autorelease];
-    self.observee.observeMe = @"Orig text";
-    
-    self.kvo = [PMPKVObservation observe:self.observee
-                                observer:self
-                                selector:@selector(test6ObservationViaSelecterForObject:changes:)
-                                 keyPath:@"observeMe"
-                                 options:0];
-    
-    self.observee.observeMe = @"New text";
-    
-    [self checkObservationAndNext];
-}
-
-- (void)test6cleanup
-{
-    self.observee = nil; // would cause KVO warning if not for the swizzled dealloc on observee
-    self.kvo = nil; // would crash if not for the swizzled dealloc on observee
-    
-    [self next];
-}
-
-- (void)test7helperMethodSimpleBlockObservation
-{
-    self.observee = [[[TestObservee alloc] init] autorelease];
+    self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Orig text";
     
     __block typeof(self) _self = self;
@@ -247,7 +119,7 @@
                                  keyPath:@"observeMe"
                                  options:0
                                 callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
-                                    NSAssert([[_self currentTest] isEqualToString:@"test7helperMethodSimpleBlockObservation"], @"received wrong kvo");
+                                    NSAssert([[_self currentTest] isEqualToString:@"test5helperMethodSimpleBlockObservation"], @"received wrong kvo");
                                     _self.changeObserved = YES;
                                 }];
         
@@ -257,7 +129,7 @@
     [self next];
 }
 
-- (void)test7cleanup
+- (void)test5cleanup
 {
     self.kvo = nil; // will remove the observation
     self.observee = nil; // shouldn't cause any KVO warnings in console
@@ -291,16 +163,30 @@
     if (self.currentTestSelectorIndex < [self.testSelectors count])
     {
         NSLog(@"Running test method: %@", [self currentTest]); //TODO: log to window
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:NSSelectorFromString([self currentTest])];
+#pragma clang diagnostic pop
     }
     else
     {
+
+#if TARGET_OS_IPHONE
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tests complete"
+                                                         message:@"Make sure you check the logs for KVO warnings"
+                                                        delegate:nil
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:@"Cool", nil];
+        [alert show];
+#else
         NSAlert * alert = [NSAlert alertWithMessageText:@"Tests complete"
                                           defaultButton:@"Cool"
                                         alternateButton:nil
                                             otherButton:nil
                               informativeTextWithFormat:@"Make sure you check the logs for KVO warnings"];
         [alert runModal];
+#endif
     }
 }
 
