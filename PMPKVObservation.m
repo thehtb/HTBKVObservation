@@ -103,13 +103,14 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
                     // I guess there is a possible race condition here with an observation being added *during* dealloc.
                     // The copy means we won't crash here, but I imagine the observation will fail.
                     
-                    NSHashTable * observeeObserverTrackingHashTable;
-                    @synchronized(observeeObserverTrackingHashTable)
+                    NSHashTable * _observeeObserverTrackingHashTable = objc_getAssociatedObject((__bridge id)obj, PMPKVObservationObjectObserversKey);
+                    NSHashTable * observeeObserverTrackingHashTableCopy;
+                    @synchronized(_observeeObserverTrackingHashTable)
                     {
-                        observeeObserverTrackingHashTable = [objc_getAssociatedObject((__bridge id)obj, PMPKVObservationObjectObserversKey) copy];
+                        observeeObserverTrackingHashTableCopy = [_observeeObserverTrackingHashTable copy];
                     }
                     
-                    for (PMPKVObservation * observation in observeeObserverTrackingHashTable)
+                    for (PMPKVObservation * observation in observeeObserverTrackingHashTableCopy)
                     {
                         //NSLog(@"Invalidating an observer in the swizzled dealloc");
                         [observation _invalidateAndRemoveTargetAssociations:NO];
