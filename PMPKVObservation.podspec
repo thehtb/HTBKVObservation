@@ -3,11 +3,12 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.requires_arc = true
   s.name     = 'PMPKVObservation'
-  s.version  = '0.3'
+  s.version  = '0.4'
   s.license  = 'MIT'
   s.summary  = 'Yet another attempt at making KVO safer and more convenient.'
   s.homepage = 'https://github.com/aufflick/PMPKVObservation'
   s.author   = { 'Mark Aufflick' => 'mark@aufflick.com' }
-  s.source   = { :git => 'https://github.com/aufflick/PMPKVObservation.git', :tag => '0.3' }
+  s.source   = { :git => 'https://github.com/aufflick/PMPKVObservation.git', :tag => "v#{spec.version}" }
   s.source_files = 'PMPKVObservation.{h,m}'
+  s.dependency = 'libextobjc/EXTScope', '~> 0.2.5'
 end

@@ -9,6 +9,7 @@
 #import "PMPKVObservation.h"
 
 #import <objc/runtime.h>
+#import <libextobjc/EXTScope.h>
 
 const char * PMPKVObservationClassIsSwizzledKey = "PMPKVObservationClassIsSwizzledKey";
 const NSString * PMPKVObservationClassIsSwizzledLockKey = @"PMPKVObservationClassIsSwizzledLockKey";
@@ -23,6 +24,8 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 @end
 
 @implementation PMPKVObservation
+
+#pragma mark - convenience contstructors
 
 + (PMPKVObservation *)observe:(id)observedObject
                       keyPath:(NSString *)keyPath
@@ -40,7 +43,6 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
         return obj;
     
     return nil;
-
 }
 
 + (NSMutableArray *)observe:(id)observedObject
@@ -58,6 +60,31 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
     
     return observations;
 }
+
++ (PMPKVObservation *)bind:(id)observedObject
+                   keyPath:(NSString *)observedKeyPath
+                  toObject:(id)boundObject
+                   keyPath:(NSString *)boundObjectKeyPath
+{
+    PMPKVObservation * observation = [[self alloc] init];
+    
+    observation.observedObject = observedObject;
+    observation.keyPath = observedKeyPath;
+    observation.options = NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew;
+    
+    @weakify(boundObject);
+    observation.callbackBlock = ^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+        @strongify(boundObject);
+        [boundObject setValue:changeDictionary[NSKeyValueChangeNewKey] forKey:boundObjectKeyPath];
+    };
+    
+    if ([observation observe])
+        return observation;
+    
+    return nil;
+}
+
+#pragma mark - instance methods
 
 - (id)init
 {
