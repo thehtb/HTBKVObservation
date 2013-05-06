@@ -42,6 +42,7 @@
              @"test3helperMethodSimpleBlockObservation",
              @"test3cleanup",
              @"test4uniDirectionalBinding",
+             @"test4cleanup",
              @"test5biDirectionalBinding",
              @"test6releaseObjectBFirst",
              @"test7releaseBindingsFirst",
