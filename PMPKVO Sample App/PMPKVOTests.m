@@ -51,11 +51,11 @@
 {
     self.test1ChangeObserved = NO;
     self.observee = [[TestObservee alloc] init];
-    self.observee.observeMe = @"Orig text";
+    self.observee.observeMe = @"Steve Wozniak";
     
     [self.observee addObserver:self forKeyPath:@"observeMe" options:0 context:(void *)1];
     
-    self.observee.observeMe = @"New text";
+    self.observee.observeMe = @"Steve Jobs";
     
     [self checkObservationAndNext:self.test1ChangeObserved];
 }
@@ -78,7 +78,7 @@
 - (void)test2simpleBlockObservation
 {
     self.observee = [[TestObservee alloc] init];
-    self.observee.observeMe = @"Orig text";
+    self.observee.observeMe = @"Bill Atkinson";
     
     self.kvo = [[PMPKVObservation alloc] init];
     self.kvo.observedObject = self.observee;
@@ -100,7 +100,7 @@
     
     [self.kvo observe];
     
-    self.observee.observeMe = @"New text";
+    self.observee.observeMe = @"Burrell Smith";
     
     [self checkObservationAndNext:changeObserved];
 }
@@ -116,7 +116,7 @@
 - (void)test3helperMethodSimpleBlockObservation
 {
     self.observee = [[TestObservee alloc] init];
-    self.observee.observeMe = @"Orig text";
+    self.observee.observeMe = @"Susan Kare";
     
     __block BOOL changeObserved;
     @weakify(self)
@@ -130,7 +130,7 @@
                                     changeObserved = YES;
                                 }];
         
-    self.observee.observeMe = @"New text";
+    self.observee.observeMe = @"Bill Budge";
     
     [self checkObservationAndNext:changeObserved];
 }
@@ -152,16 +152,16 @@
     @autoreleasepool
     {
         obs = [[TestObservee alloc] init];
-        obs.observeMe = @"Initial value";
+        obs.observeMe = @"Budd Tribble";
         
         binder = [[TestBinder alloc] init];
         kvo = [PMPKVObservation bind:obs keyPath:@"observeMe" toObject:binder keyPath:@"targetString"];
         
-        NSAssert([binder.targetString isEqualToString:@"Initial value"], @"Initial value not set on binder");
+        NSAssert([binder.targetString isEqualToString:@"Budd Tribble"], @"Initial value not set on binder");
         
-        obs.observeMe = @"Next value";
+        obs.observeMe = @"Steve Capps";
         
-        NSAssert([binder.targetString isEqualToString:@"Next value"], @"Next value not set on binder");
+        NSAssert([binder.targetString isEqualToString:@"Steve Capps"], @"Next value not set on binder");
         
         // removing the objects should clear the kvo automatically
         obs = nil; // shouldn't cause any KVO warnings in console
@@ -187,7 +187,7 @@
     @autoreleasepool
     {
         objectA = [[TestObservee alloc] init];
-        objectA.observeMe = @"Burrell Smith";
+        objectA.observeMe = @"Chris Espinosa";
         
         objectB = [[TestBinder alloc] init];
         objectB.targetString = @"Andy Hertzfeld";
@@ -196,14 +196,14 @@
         
         NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
         
-        NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
-        NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
+        NSAssert([objectA.observeMe isEqualToString:@"Chris Espinosa"], @"After creating the binding, objectA's property should be unchanged");
+        NSAssert([objectB.targetString isEqualToString:@"Chris Espinosa"], @"After creating the binding, objectB's property should equal objectA's");
         
-        objectA.observeMe = @"Bill Atkinson";
-        NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
+        objectA.observeMe = @"Bruce Horn";
+        NSAssert([objectB.targetString isEqualToString:@"Bruce Horn"], @"Setting objectA's property updates objectB's");
         
-        objectB.targetString = @"Bud Tribble";
-        NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
+        objectB.targetString = @"Joanna Hoffman";
+        NSAssert([objectA.observeMe isEqualToString:@"Joanna Hoffman"], @"Setting object B's property updates object A's");
         
         objectA = nil; // releasing objectA first should generate no KVO warnings
     }
@@ -223,23 +223,23 @@
     @autoreleasepool
     {
         objectA = [[TestObservee alloc] init];
-        objectA.observeMe = @"Burrell Smith";
+        objectA.observeMe = @"Randy Wigginton";
         
         objectB = [[TestBinder alloc] init];
-        objectB.targetString = @"Andy Hertzfeld";
+        objectB.targetString = @"Jef Raskin";
         
         bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
         
         NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
         
-        NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
-        NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
+        NSAssert([objectA.observeMe isEqualToString:@"Randy Wigginton"], @"After creating the binding, objectA's property should be unchanged");
+        NSAssert([objectB.targetString isEqualToString:@"Randy Wigginton"], @"After creating the binding, objectB's property should equal objectA's");
         
-        objectA.observeMe = @"Bill Atkinson";
-        NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
+        objectA.observeMe = @"Mark Markkula";
+        NSAssert([objectB.targetString isEqualToString:@"Mark Markkula"], @"Setting objectA's property updates objectB's");
         
-        objectB.targetString = @"Bud Tribble";
-        NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
+        objectB.targetString = @"Caroline Rose";
+        NSAssert([objectA.observeMe isEqualToString:@"Caroline Rose"], @"Setting object B's property updates object A's");
         
         objectB = nil; // releasing objectA first should generate no KVO warnings
     }
@@ -259,23 +259,23 @@
     @autoreleasepool
     {
         objectA = [[TestObservee alloc] init];
-        objectA.observeMe = @"Burrell Smith";
+        objectA.observeMe = @"Clarus";
         
         objectB = [[TestBinder alloc] init];
-        objectB.targetString = @"Andy Hertzfeld";
+        objectB.targetString = @"Moof";
         
         bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
         
         NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
         
-        NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
-        NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
+        NSAssert([objectA.observeMe isEqualToString:@"Clarus"], @"After creating the binding, objectA's property should be unchanged");
+        NSAssert([objectB.targetString isEqualToString:@"Clarus"], @"After creating the binding, objectB's property should equal objectA's");
         
-        objectA.observeMe = @"Bill Atkinson";
-        NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
+        objectA.observeMe = @"MacMan";
+        NSAssert([objectB.targetString isEqualToString:@"MacMan"], @"Setting objectA's property updates objectB's");
         
-        objectB.targetString = @"Bud Tribble";
-        NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
+        objectB.targetString = @"Dan Kottke";
+        NSAssert([objectA.observeMe isEqualToString:@"Dan Kottke"], @"Setting object B's property updates object A's");
         
         bindings = nil;
     }
