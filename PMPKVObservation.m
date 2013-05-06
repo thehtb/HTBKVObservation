@@ -99,6 +99,58 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
     return nil;
 }
 
++ (NSArray *)bidirectionallyBind:(id)objectA
+                                keyPath:(NSString *)objectAKeyPath
+                             withObject:(id)objectB
+                                keyPath:(NSString *)objectBKeyPath
+{
+    PMPKVObservation * observationA = [[self alloc] init];
+    PMPKVObservation * observationB = [[self alloc] init];
+    
+    observationA.observedObject = objectA;
+    observationA.keyPath = objectAKeyPath;
+    observationA.options = NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew;
+
+    observationB.observedObject = objectB;
+    observationB.keyPath = objectBKeyPath;
+    observationB.options = NSKeyValueObservingOptionNew;
+    
+    __block BOOL bindingUpdateInProgress = NO;
+    
+    @weakify(objectA);
+    @weakify(objectB);
+    
+    observationA.callbackBlock = ^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+        @strongify(objectB);
+        if (!bindingUpdateInProgress)
+        {
+            bindingUpdateInProgress = YES;
+            [objectB setValue:changeDictionary[NSKeyValueChangeNewKey] forKey:objectBKeyPath];
+            bindingUpdateInProgress = NO;
+        }
+    };
+    
+    observationB.callbackBlock = ^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+        @strongify(objectA);
+        if (!bindingUpdateInProgress)
+        {
+            bindingUpdateInProgress = YES;
+            [objectA setValue:changeDictionary[NSKeyValueChangeNewKey] forKey:objectAKeyPath];
+            bindingUpdateInProgress = NO;
+        }
+    };
+
+    if ([observationB observe])
+    {
+        if ([observationA observe])
+            return @[observationA, observationB];
+        
+        [observationB invalidate];
+    }
+    
+    return nil;
+}
+
 #pragma mark - instance methods
 
 - (void)setIsValid:(BOOL)isValid
