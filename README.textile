@@ -1,13 +1,13 @@
-h1. PMPKVObservation - Yet Another KVO-improvement project
+h1. HTBKVObservation - Yet Another KVO-improvement project
 
 h2. Synopsis
 
-p. Include PMPKVObservation.m and .h in your project
+p. Include HTBKVObservation.m and .h in your project
 
-bc.. #import "PMPKVObservation.h"
+bc.. #import "HTBKVObservation.h"
 
 @interface PMPKVOTests ()
-@property (retain) PMPKVObservation * anObservation;
+@property (retain) HTBKVObservation * anObservation;
 @property (retain) NSMutableArray * multipleObservations;
 @end
 
@@ -15,20 +15,20 @@ bc.. #import "PMPKVObservation.h"
 
 - (void)blockObservation
 {
-    self.anObservation = [PMPKVObservation observe:anObjectToObserve
+    self.anObservation = [HTBKVObservation observe:anObjectToObserve
                                            keyPath:@"observeMe"
                                            options:0
-                                          callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                          callback:^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
                                               NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
                                                   observation.observedObject,
                                                   observation.keyPath,
                                                   changes);
                                           }];
                                           
-    self.multipleObservations = [PMPKVObservation observe:anObjectToObserve
+    self.multipleObservations = [HTBKVObservation observe:anObjectToObserve
                                       forMultipleKeyPaths:@[@"observeMe2", @"observeMe3"]
                                                   options:0
-                                             callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                             callback:^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
                                                  NSLog(@"observation fired for object: %@ keyPath: %@ changes: %@",
                                                      observation.observedObject,
                                                      observation.keyPath,
@@ -60,7 +60,7 @@ p. It was clear that the dealloc swizzling approach of Mike Ash's "MAKVONotifica
 
 p. Except it's not quite that simple because you still need to swizzle the dealloc of the observed object since it can go away at any time. And as much as I love a good macro as much as the next hacker, Joachim's @$depends()@ macro looks about as much fun as a "turing complete makefile":http://okmij.org/ftp/Computation/Make-functional.txt .
 
-p. Enter PMPKVObservation!
+p. Enter HTBKVObservation!
 
 h2. Changelog
 

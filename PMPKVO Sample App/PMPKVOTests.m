@@ -9,7 +9,7 @@
 #import "PMPKVOTests.h"
 
 #import "TestObservee.h"
-#import "PMPKVObservation.h"
+#import "HTBKVObservation.h"
 #import "TestBinder.h"
 
 #import <libextobjc/EXTScope.h>
@@ -20,7 +20,7 @@
 @property BOOL test1ChangeObserved;
 @property (nonatomic, strong, readonly) NSArray * testSelectors;
 @property (nonatomic) NSInteger currentTestSelectorIndex;
-@property (nonatomic, strong) PMPKVObservation * kvo;
+@property (nonatomic, strong) HTBKVObservation * kvo;
 
 - (void)next;
 - (void)checkObservationAndNext:(BOOL)changeObserved;
@@ -80,14 +80,14 @@
     self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Bill Atkinson";
     
-    self.kvo = [[PMPKVObservation alloc] init];
+    self.kvo = [[HTBKVObservation alloc] init];
     self.kvo.observedObject = self.observee;
     self.kvo.keyPath = @"observeMe";
     
     __block BOOL changeObserved;
     @weakify(self)
     
-    [self.kvo setCallbackBlock:^(PMPKVObservation * obs, NSDictionary * change) {
+    [self.kvo setCallbackBlock:^(HTBKVObservation * obs, NSDictionary * change) {
         @strongify(self)
 
         if (! [[self currentTest] isEqualToString:@"test2simpleBlockObservation"])
@@ -121,10 +121,10 @@
     __block BOOL changeObserved;
     @weakify(self)
     
-    self.kvo = [PMPKVObservation observe:self.observee
+    self.kvo = [HTBKVObservation observe:self.observee
                                  keyPath:@"observeMe"
                                  options:0
-                                callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
+                                callback:^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
                                     @strongify(self)
                                     NSAssert([[self currentTest] isEqualToString:@"test3helperMethodSimpleBlockObservation"], @"received wrong kvo");
                                     changeObserved = YES;
@@ -147,7 +147,7 @@
 {
     TestObservee * obs;
     TestBinder * binder;
-    PMPKVObservation * kvo;
+    HTBKVObservation * kvo;
     
     @autoreleasepool
     {
@@ -155,7 +155,7 @@
         obs.observeMe = @"Budd Tribble";
         
         binder = [[TestBinder alloc] init];
-        kvo = [PMPKVObservation bind:obs keyPath:@"observeMe" toObject:binder keyPath:@"targetString"];
+        kvo = [HTBKVObservation bind:obs keyPath:@"observeMe" toObject:binder keyPath:@"targetString"];
         
         NSAssert([binder.targetString isEqualToString:@"Budd Tribble"], @"Initial value not set on binder");
         
@@ -192,7 +192,7 @@
         objectB = [[TestBinder alloc] init];
         objectB.targetString = @"Andy Hertzfeld";
         
-        bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
+        bindings = [HTBKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
         
         NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
         
@@ -228,7 +228,7 @@
         objectB = [[TestBinder alloc] init];
         objectB.targetString = @"Jef Raskin";
         
-        bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
+        bindings = [HTBKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
         
         NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
         
@@ -264,7 +264,7 @@
         objectB = [[TestBinder alloc] init];
         objectB.targetString = @"Moof";
         
-        bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
+        bindings = [HTBKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
         
         NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
         

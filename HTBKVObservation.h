@@ -8,27 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class PMPKVObservation;
-
-@interface PMPKVObservation : NSObject
+@interface HTBKVObservation : NSObject
 
 @property (nonatomic, weak) id observedObject;
-@property (nonatomic, copy) void (^callbackBlock)(PMPKVObservation * observation, NSDictionary * changeDictionary);
+@property (nonatomic, copy) void (^callbackBlock)(HTBKVObservation * observation, NSDictionary * changeDictionary);
 @property (nonatomic, copy) NSString * keyPath;
 @property NSKeyValueObservingOptions options;
 @property (nonatomic, readonly) BOOL isValid;
 
-+ (PMPKVObservation *)observe:(id)observedObject
++ (HTBKVObservation *)observe:(id)observedObject
                       keyPath:(NSString *)keyPath
                       options:(NSKeyValueObservingOptions)options
-                     callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
+                     callback:(void (^)(HTBKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
 
 + (NSArray *)observe:(id)observedObject
  forMultipleKeyPaths:(NSArray *)keyPaths
              options:(NSKeyValueObservingOptions)options
-            callback:(void (^)(PMPKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
+            callback:(void (^)(HTBKVObservation * observation, NSDictionary * changeDictionary))callbackBlock;
 
-+ (PMPKVObservation *)bind:(id)observedObject
++ (HTBKVObservation *)bind:(id)observedObject
                    keyPath:(NSString *)observedKeyPath
                   toObject:(id)boundObject
                    keyPath:(NSString *)boundObjectKeyPath;
