@@ -21,7 +21,6 @@
 @property (nonatomic, strong, readonly) NSArray * testSelectors;
 @property (nonatomic) NSInteger currentTestSelectorIndex;
 @property (nonatomic, strong) PMPKVObservation * kvo;
-@property (nonatomic, strong) TestBinder * binder;
 
 - (void)next;
 - (void)checkObservationAndNext:(BOOL)changeObserved;
@@ -42,7 +41,6 @@
              @"test3helperMethodSimpleBlockObservation",
              @"test3cleanup",
              @"test4uniDirectionalBinding",
-             @"test4cleanup",
              @"test5biDirectionalBinding",
              @"test6releaseObjectBFirst",
              @"test7releaseBindingsFirst",
@@ -147,32 +145,35 @@
 
 - (void)test4uniDirectionalBinding
 {
-    self.observee = [[TestObservee alloc] init];
-    self.observee.observeMe = @"Initial value";
+    TestObservee * obs;
+    TestBinder * binder;
+    PMPKVObservation * kvo;
     
-    self.binder = [[TestBinder alloc] init];
-    self.kvo = [PMPKVObservation bind:self.observee keyPath:@"observeMe" toObject:self.binder keyPath:@"targetString"];
+    @autoreleasepool
+    {
+        obs = [[TestObservee alloc] init];
+        obs.observeMe = @"Initial value";
+        
+        binder = [[TestBinder alloc] init];
+        kvo = [PMPKVObservation bind:obs keyPath:@"observeMe" toObject:binder keyPath:@"targetString"];
+        
+        NSAssert([binder.targetString isEqualToString:@"Initial value"], @"Initial value not set on binder");
+        
+        obs.observeMe = @"Next value";
+        
+        NSAssert([binder.targetString isEqualToString:@"Next value"], @"Next value not set on binder");
+        
+        // removing the objects should clear the kvo automatically
+        obs = nil; // shouldn't cause any KVO warnings in console
+        
+        // the observation isn't actually released until the autorelease pool exits since it's an autoreleased convenience method
+    }
     
-    NSAssert([self.binder.targetString isEqualToString:@"Initial value"], @"Initial value not set on binder");
+    NSAssert(!kvo.isValid, @"KVO Object still marked as valid even after observee cleared");
     
-    self.observee.observeMe = @"Next value";
+    binder = nil; // shouldn't cause any KVO warnings in console
     
-    NSAssert([self.binder.targetString isEqualToString:@"Next value"], @"Next value not set on binder");
-    [self next];
-}
-
-- (void)test4cleanup
-{
-    //TODO: why does this fail when placed directly in the test above...
-    
-    // removing the objects should clear the kvo automatically
-    self.observee = nil; // shouldn't cause any KVO warnings in console
-    
-    NSAssert(!self.kvo.isValid, @"KVO Object still marked as valid even after observee cleared");
-    
-    self.binder = nil; // shouldn't cause any KVO warnings in console
-    
-    self.kvo = nil;
+    kvo = nil;
     
     [self next];
 }
