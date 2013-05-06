@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Pumptheory Pty Ltd. All rights reserved.
 //
 
-#import "PMPKVOTests.h"
+#import "HTBKVOTests.h"
 
 #import "TestObservee.h"
 #import "HTBKVObservation.h"
@@ -14,7 +14,7 @@
 
 #import <libextobjc/EXTScope.h>
 
-@interface PMPKVOTests ()
+@interface HTBKVOTests ()
 
 @property (nonatomic, strong) TestObservee * observee;
 @property BOOL test1ChangeObserved;
@@ -29,7 +29,7 @@
 @end
 
 
-@implementation PMPKVOTests
+@implementation HTBKVOTests
 
 - (NSArray *)testSelectors
 {

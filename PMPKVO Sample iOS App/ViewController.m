@@ -8,11 +8,11 @@
 
 #import "ViewController.h"
 
-#import "PMPKVOTests.h"
+#import "HTBKVOTests.h"
 
 @interface ViewController ()
 
-@property (strong) PMPKVOTests * tests;
+@property (strong) HTBKVOTests * tests;
 
 @end
 
@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
 
-    self.tests = [[PMPKVOTests alloc] init];
+    self.tests = [[HTBKVOTests alloc] init];
     [self.tests runTests];
 }
 

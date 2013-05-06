@@ -21,7 +21,7 @@
 		644C5D431676ACE700436A9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D421676ACE700436A9A /* Default-568h@2x.png */; };
 		644C5D461676ACE700436A9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D451676ACE700436A9A /* ViewController.m */; };
 		644C5D491676ACE700436A9A /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D471676ACE700436A9A /* ViewController.xib */; };
-		644C5D4E1676AD0200436A9A /* PMPKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* PMPKVOTests.m */; };
+		644C5D4E1676AD0200436A9A /* HTBKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* HTBKVOTests.m */; };
 		644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
 		644C5D501676AE4600436A9A /* HTBKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* HTBKVObservation.m */; };
 		64A0842D150D7DF200BE94AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0842C150D7DF200BE94AC /* Cocoa.framework */; };
@@ -32,7 +32,7 @@
 		64A08443150D7DF200BE94AC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A08441150D7DF200BE94AC /* MainMenu.xib */; };
 		64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* HTBKVObservation.m */; };
 		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
-		64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* PMPKVOTests.m */; };
+		64A0846D150D890B00BE94AC /* HTBKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* HTBKVOTests.m */; };
 		64EA06A3150ED2DA00E0934C /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 64EA06A2150ED2DA00E0934C /* README.textile */; };
 		C1908BC66AD74E6A91707F3A /* libPods-SampleiOSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6E6944F2F944FA9E5CECF6 /* libPods-SampleiOSApp.a */; };
 /* End PBXBuildFile section */
@@ -76,8 +76,8 @@
 		64A08462150D7E2500BE94AC /* HTBKVObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTBKVObservation.m; sourceTree = "<group>"; };
 		64A08464150D7EE000BE94AC /* TestObservee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestObservee.h; path = "PMPKVO Sample App/TestObservee.h"; sourceTree = SOURCE_ROOT; };
 		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; };
-		64A0846B150D890B00BE94AC /* PMPKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMPKVOTests.h; path = "PMPKVO Sample App/PMPKVOTests.h"; sourceTree = "<group>"; };
-		64A0846C150D890B00BE94AC /* PMPKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PMPKVOTests.m; path = "PMPKVO Sample App/PMPKVOTests.m"; sourceTree = "<group>"; };
+		64A0846B150D890B00BE94AC /* HTBKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTBKVOTests.h; path = "PMPKVO Sample App/HTBKVOTests.h"; sourceTree = "<group>"; };
+		64A0846C150D890B00BE94AC /* HTBKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTBKVOTests.m; path = "PMPKVO Sample App/HTBKVOTests.m"; sourceTree = "<group>"; };
 		64EA06A2150ED2DA00E0934C /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
 		675D585C671F428E90ECB0DA /* Pods-SampleMacApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMacApp.xcconfig"; path = "Pods/Pods-SampleMacApp.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DDEDC9890A0043D8A298FD67 /* Pods-SampleiOSApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleiOSApp.xcconfig"; path = "Pods/Pods-SampleiOSApp.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -138,8 +138,8 @@
 		644C5D4D1676ACF200436A9A /* Shared Test Classes */ = {
 			isa = PBXGroup;
 			children = (
-				64A0846B150D890B00BE94AC /* PMPKVOTests.h */,
-				64A0846C150D890B00BE94AC /* PMPKVOTests.m */,
+				64A0846B150D890B00BE94AC /* HTBKVOTests.h */,
+				64A0846C150D890B00BE94AC /* HTBKVOTests.m */,
 				64A08464150D7EE000BE94AC /* TestObservee.h */,
 				64A08465150D7EE000BE94AC /* TestObservee.m */,
 				642399C117377528004DEDE3 /* TestBinder.h */,
@@ -353,7 +353,7 @@
 				644C5D391676ACE700436A9A /* main.m in Sources */,
 				644C5D3D1676ACE700436A9A /* AppDelegate.m in Sources */,
 				644C5D461676ACE700436A9A /* ViewController.m in Sources */,
-				644C5D4E1676AD0200436A9A /* PMPKVOTests.m in Sources */,
+				644C5D4E1676AD0200436A9A /* HTBKVOTests.m in Sources */,
 				644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */,
 				644C5D501676AE4600436A9A /* HTBKVObservation.m in Sources */,
 				642399C417377D4D004DEDE3 /* TestBinder.m in Sources */,
@@ -368,7 +368,7 @@
 				64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */,
 				64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */,
 				64A08466150D7EE000BE94AC /* TestObservee.m in Sources */,
-				64A0846D150D890B00BE94AC /* PMPKVOTests.m in Sources */,
+				64A0846D150D890B00BE94AC /* HTBKVOTests.m in Sources */,
 				642399C317377528004DEDE3 /* TestBinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

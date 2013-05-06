@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PMPKVOTests : NSObject
+@interface HTBKVOTests : NSObject
 
 - (void)runTests;
 
