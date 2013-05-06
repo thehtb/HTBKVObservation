@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2ABF0A1E2F654C1B94A5E999 /* libPods-SampleMacApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD8D5B71AFE446F96DEA2F1 /* libPods-SampleMacApp.a */; };
 		642399C317377528004DEDE3 /* TestBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 642399C217377528004DEDE3 /* TestBinder.m */; };
+		642399C417377D4D004DEDE3 /* TestBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 642399C217377528004DEDE3 /* TestBinder.m */; };
 		644C5D2D1676ACE700436A9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D2C1676ACE700436A9A /* UIKit.framework */; };
 		644C5D2F1676ACE700436A9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D2E1676ACE700436A9A /* Foundation.framework */; };
 		644C5D311676ACE700436A9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D301676ACE700436A9A /* CoreGraphics.framework */; };
@@ -353,6 +354,7 @@
 				644C5D4E1676AD0200436A9A /* PMPKVOTests.m in Sources */,
 				644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */,
 				644C5D501676AE4600436A9A /* PMPKVObservation.m in Sources */,
+				642399C417377D4D004DEDE3 /* TestBinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

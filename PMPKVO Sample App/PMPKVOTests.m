@@ -34,14 +34,16 @@
 
 - (NSArray *)testSelectors
 {
-    return [NSArray arrayWithObjects:
-            @"test1NormalKVO",
-            @"test1cleanup",
-            @"test2simpleBlockObservation",
-            @"test2cleanup",
-            @"test3helperMethodSimpleBlockObservation",
-            @"test3cleanup",
-            nil];
+    return @[
+             @"test1NormalKVO",
+             @"test1cleanup",
+             @"test2simpleBlockObservation",
+             @"test2cleanup",
+             @"test3helperMethodSimpleBlockObservation",
+             @"test3cleanup",
+             @"test4uniDirectionalBinding",
+             @"test4cleanup"
+             ];
 }
 
 - (void)test1NormalKVO
@@ -145,7 +147,30 @@
     self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Initial value";
     
+    self.binder = [[TestBinder alloc] init];
+    self.kvo = [PMPKVObservation bind:self.observee keyPath:@"observeMe" toObject:self.binder keyPath:@"targetString"];
     
+    NSAssert([self.binder.targetString isEqualToString:@"Initial value"], @"Initial value not set on binder");
+    
+    self.observee.observeMe = @"Next value";
+    
+    NSAssert([self.binder.targetString isEqualToString:@"Next value"], @"Next value not set on binder");
+    
+    [self next];
+}
+
+- (void)test4cleanup
+{
+    // removing the objects should clear the kvo automatically
+    self.observee = nil; // shouldn't cause any KVO warnings in console
+    
+    NSAssert(!self.kvo.isValid, @"KVO Object still marked as valid even after observee cleared");
+
+    self.binder = nil; // shouldn't cause any KVO warnings in console
+    
+    self.kvo = nil;
+    
+    [self next];
 }
 
 /*
