@@ -62,6 +62,8 @@ h2. Changelog
 
 * v0.1 : first version tag created for CocoaPods user happiness
 * v0.2 : Now requires ARC, and consequently the target/action API was removed in favour of the block based API.
+* v0.3 : Fixed a possible race condition.
+* v0.4 : Added uni-directional binding.
 
 h2. Author
 

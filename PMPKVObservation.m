@@ -25,7 +25,22 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 
 @implementation PMPKVObservation
 
-#pragma mark - convenience contstructors
+- (id)init
+{
+    if ((self = [super init]) == nil)
+        return nil;
+
+    _isValid = NO;
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [self invalidate];
+}
+
+#pragma mark - convenience constructors
 
 + (PMPKVObservation *)observe:(id)observedObject
                       keyPath:(NSString *)keyPath
@@ -85,21 +100,6 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 }
 
 #pragma mark - instance methods
-
-- (id)init
-{
-    if ((self = [super init]))
-    {
-        _isValid = NO;
-    }
-    
-    return self;
-}
-
-- (void)dealloc
-{
-    [self invalidate];
-}
 
 - (void)setIsValid:(BOOL)isValid
 {
