@@ -6,12 +6,12 @@ p. Include HTBKVObservation.m and .h in your project
 
 bc.. #import "HTBKVObservation.h"
 
-@interface PMPKVOTests ()
+@interface HTBKVOTests ()
 @property (retain) HTBKVObservation * anObservation;
 @property (retain) NSMutableArray * multipleObservations;
 @end
 
-@implementation PMPKVOTests
+@implementation HTBKVOTests
 
 - (void)blockObservation
 {

@@ -1,6 +1,6 @@
 //
 //  ViewController.h
-//  PMPKVO Sample iOS App
+//  HTBKVO Sample iOS App
 //
 //  Created by Mark Aufflick on 11/12/12.
 //  Copyright (c) 2012 Pumptheory Pty Ltd. All rights reserved.

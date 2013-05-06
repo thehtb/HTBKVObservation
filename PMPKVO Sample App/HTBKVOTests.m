@@ -1,6 +1,6 @@
 //
-//  PMPKVOTests.m
-//  PMPKVO Sample App
+//  HTBKVOTests.m
+//  HTBKVO Sample App
 //
 //  Created by Mark Aufflick on 12/03/12.
 //  Copyright (c) 2012 Pumptheory Pty Ltd. All rights reserved.
@@ -62,7 +62,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    // checking context to make sure we don't get called for PMPKVO
+    // checking context to make sure we don't get called for HTBKVO
     NSAssert(object == self.observee && context == (void *)1, @"recieved wrong kvo");
     self.test1ChangeObserved = YES;
 }
