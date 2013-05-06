@@ -3,7 +3,7 @@
 //  HTBKVO Sample App
 //
 //  Created by Mark Aufflick on 6/05/13.
-//  Copyright (c) 2013 Pumptheory Pty Ltd. All rights reserved.
+//  Copyright (c) 2013 The High Technology Bureau. All rights reserved.
 //
 
 #import "TestBinder.h"
