@@ -1,2 +1,5 @@
 xcuserdata
 .DS_Store
+
+# the Pods directory is only needed for building/running the demo/test apps
+Pods

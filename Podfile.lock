@@ -1,0 +1,12 @@
+PODS:
+  - libextobjc/EXTScope (0.2.5):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.2.5)
+
+DEPENDENCIES:
+  - libextobjc/EXTScope (~> 0.2.5)
+
+SPEC CHECKSUMS:
+  libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
+
+COCOAPODS: 0.17.1
