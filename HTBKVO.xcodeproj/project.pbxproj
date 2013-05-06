@@ -28,7 +28,7 @@
 		64A08437150D7DF200BE94AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64A08435150D7DF200BE94AC /* InfoPlist.strings */; };
 		64A08439150D7DF200BE94AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08438150D7DF200BE94AC /* main.m */; };
 		64A0843D150D7DF200BE94AC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 64A0843B150D7DF200BE94AC /* Credits.rtf */; };
-		64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */; };
+		64A08440150D7DF200BE94AC /* SampleMacAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0843F150D7DF200BE94AC /* SampleMacAppDelegate.m */; };
 		64A08443150D7DF200BE94AC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A08441150D7DF200BE94AC /* MainMenu.xib */; };
 		64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* HTBKVObservation.m */; };
 		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
@@ -68,8 +68,8 @@
 		64A08438150D7DF200BE94AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		64A0843A150D7DF200BE94AC /* HTBKVO-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTBKVO-Prefix.pch"; sourceTree = "<group>"; };
 		64A0843C150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		64A0843E150D7DF200BE94AC /* PMPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPAppDelegate.h; sourceTree = "<group>"; };
-		64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPAppDelegate.m; sourceTree = "<group>"; };
+		64A0843E150D7DF200BE94AC /* SampleMacAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleMacAppDelegate.h; sourceTree = "<group>"; };
+		64A0843F150D7DF200BE94AC /* SampleMacAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleMacAppDelegate.m; sourceTree = "<group>"; };
 		64A08442150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		64A0844A150D7DF200BE94AC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		64A08461150D7E2500BE94AC /* HTBKVObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTBKVObservation.h; sourceTree = "<group>"; };
@@ -201,8 +201,8 @@
 		64A08432150D7DF200BE94AC /* HTBKVO Sample App */ = {
 			isa = PBXGroup;
 			children = (
-				64A0843E150D7DF200BE94AC /* PMPAppDelegate.h */,
-				64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */,
+				64A0843E150D7DF200BE94AC /* SampleMacAppDelegate.h */,
+				64A0843F150D7DF200BE94AC /* SampleMacAppDelegate.m */,
 				64A08441150D7DF200BE94AC /* MainMenu.xib */,
 				64A08433150D7DF200BE94AC /* Supporting Files */,
 			);
@@ -365,7 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64A08439150D7DF200BE94AC /* main.m in Sources */,
-				64A08440150D7DF200BE94AC /* PMPAppDelegate.m in Sources */,
+				64A08440150D7DF200BE94AC /* SampleMacAppDelegate.m in Sources */,
 				64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */,
 				64A08466150D7EE000BE94AC /* TestObservee.m in Sources */,
 				64A0846D150D890B00BE94AC /* HTBKVOTests.m in Sources */,

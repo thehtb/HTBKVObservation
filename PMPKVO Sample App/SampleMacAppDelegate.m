@@ -6,18 +6,18 @@
 //  Copyright (c) 2012 Pumptheory Pty Ltd. All rights reserved.
 //
 
-#import "PMPAppDelegate.h"
+#import "SampleMacAppDelegate.h"
 
 #import "HTBKVOTests.h"
 
-@interface PMPAppDelegate ()
+@interface SampleMacAppDelegate ()
 
 @property (strong) HTBKVOTests * tests;
 
 @end
 
 
-@implementation PMPAppDelegate
+@implementation SampleMacAppDelegate
 
 @synthesize window = _window;
 @synthesize tests;
