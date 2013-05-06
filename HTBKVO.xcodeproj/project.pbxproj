@@ -58,15 +58,15 @@
 		644C5D441676ACE700436A9A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		644C5D451676ACE700436A9A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		644C5D481676ACE700436A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "PMPKVO Sample App.app"; path = SampleMacApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A08428150D7DF200BE94AC /* SampleMacApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMacApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0842C150D7DF200BE94AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64A0842F150D7DF200BE94AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64A08430150D7DF200BE94AC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		64A08431150D7DF200BE94AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		64A08434150D7DF200BE94AC /* PMPKVO Sample App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PMPKVO Sample App-Info.plist"; sourceTree = "<group>"; };
+		64A08434150D7DF200BE94AC /* HTBKVO-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTBKVO-Info.plist"; sourceTree = "<group>"; };
 		64A08436150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64A08438150D7DF200BE94AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64A0843A150D7DF200BE94AC /* PMPKVO Sample App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PMPKVO Sample App-Prefix.pch"; sourceTree = "<group>"; };
+		64A0843A150D7DF200BE94AC /* HTBKVO-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTBKVO-Prefix.pch"; sourceTree = "<group>"; };
 		64A0843C150D7DF200BE94AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		64A0843E150D7DF200BE94AC /* PMPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPAppDelegate.h; sourceTree = "<group>"; };
 		64A0843F150D7DF200BE94AC /* PMPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPAppDelegate.m; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		64A08429150D7DF200BE94AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */,
+				64A08428150D7DF200BE94AC /* SampleMacApp.app */,
 				644C5D2A1676ACE700436A9A /* SampleiOSApp.app */,
 			);
 			name = Products;
@@ -211,10 +211,10 @@
 		64A08433150D7DF200BE94AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64A08434150D7DF200BE94AC /* PMPKVO Sample App-Info.plist */,
+				64A08434150D7DF200BE94AC /* HTBKVO-Info.plist */,
 				64A08435150D7DF200BE94AC /* InfoPlist.strings */,
 				64A08438150D7DF200BE94AC /* main.m */,
-				64A0843A150D7DF200BE94AC /* PMPKVO Sample App-Prefix.pch */,
+				64A0843A150D7DF200BE94AC /* HTBKVO-Prefix.pch */,
 				64A0843B150D7DF200BE94AC /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -256,7 +256,7 @@
 			);
 			name = SampleMacApp;
 			productName = "PMPKVO Sample App";
-			productReference = 64A08428150D7DF200BE94AC /* PMPKVO Sample App.app */;
+			productReference = 64A08428150D7DF200BE94AC /* SampleMacApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -268,7 +268,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Pumptheory Pty Ltd";
 			};
-			buildConfigurationList = 64A08422150D7DF100BE94AC /* Build configuration list for PBXProject "PMPKVO Sample App" */;
+			buildConfigurationList = 64A08422150D7DF100BE94AC /* Build configuration list for PBXProject "HTBKVO" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -535,8 +535,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
-				INFOPLIST_FILE = "PMPKVO Sample App/PMPKVO Sample App-Info.plist";
+				GCC_PREFIX_HEADER = "PMPKVO Sample App/HTBKVO-Prefix.pch";
+				INFOPLIST_FILE = "PMPKVO Sample App/HTBKVO-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -550,8 +550,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PMPKVO Sample App/PMPKVO Sample App-Prefix.pch";
-				INFOPLIST_FILE = "PMPKVO Sample App/PMPKVO Sample App-Info.plist";
+				GCC_PREFIX_HEADER = "PMPKVO Sample App/HTBKVO-Prefix.pch";
+				INFOPLIST_FILE = "PMPKVO Sample App/HTBKVO-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64A08422150D7DF100BE94AC /* Build configuration list for PBXProject "PMPKVO Sample App" */ = {
+		64A08422150D7DF100BE94AC /* Build configuration list for PBXProject "HTBKVO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64A08458150D7DF200BE94AC /* Debug */,
