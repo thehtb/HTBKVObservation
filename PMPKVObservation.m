@@ -19,7 +19,7 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 
 - (void)setIsValid:(BOOL)isValid;
 - (void)prepareObservedObjectAndClass;
-- (void)_invalidateAndRemoveTargetAssociations:(BOOL)removeTargetAssociations;
+- (void)_invalidateObservedObject:(id)obj andRemoveTargetAssociations:(BOOL)removeTargetAssociations;
 
 @end
 
@@ -140,7 +140,7 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
                     for (PMPKVObservation * observation in observeeObserverTrackingHashTableCopy)
                     {
                         //NSLog(@"Invalidating an observer in the swizzled dealloc");
-                        [observation _invalidateAndRemoveTargetAssociations:NO];
+                        [observation _invalidateObservedObject:(__bridge id)(obj) andRemoveTargetAssociations:NO];
                     }
                 }
                 ((void (*)(void *, SEL))origImpl)(obj, deallocSel);
@@ -200,21 +200,21 @@ const char * PMPKVObservationObjectObserversKey = "PMPKVObservationObjectObserve
 
 - (void)invalidate
 {
-    [self _invalidateAndRemoveTargetAssociations:YES];
+    [self _invalidateObservedObject:self.observedObject andRemoveTargetAssociations:YES];
 }
 
-- (void)_invalidateAndRemoveTargetAssociations:(BOOL)removeTargetAssociations
+- (void)_invalidateObservedObject:(id)obj andRemoveTargetAssociations:(BOOL)removeTargetAssociations
 {
     if (![self isValid])
         return;
     
     [self setIsValid:NO];
     
-    [[self observedObject] removeObserver:self forKeyPath:self.keyPath];
+    [obj removeObserver:self forKeyPath:self.keyPath];
     
     if (removeTargetAssociations)
     {
-        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(self.observedObject, PMPKVObservationObjectObserversKey);
+        NSHashTable * observeeObserverTrackingHashTable = objc_getAssociatedObject(obj, PMPKVObservationObjectObserversKey);
         
         @synchronized(observeeObserverTrackingHashTable)
         {
