@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Pumptheory Pty Ltd. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "SampleiOSAppDelegate.h"
 
 #import "ViewController.h"
 
-@implementation AppDelegate
+@implementation SampleiOSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

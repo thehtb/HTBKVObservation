@@ -15,7 +15,7 @@
 		644C5D311676ACE700436A9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C5D301676ACE700436A9A /* CoreGraphics.framework */; };
 		644C5D371676ACE700436A9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D351676ACE700436A9A /* InfoPlist.strings */; };
 		644C5D391676ACE700436A9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D381676ACE700436A9A /* main.m */; };
-		644C5D3D1676ACE700436A9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D3C1676ACE700436A9A /* AppDelegate.m */; };
+		644C5D3D1676ACE700436A9A /* SampleiOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 644C5D3C1676ACE700436A9A /* SampleiOSAppDelegate.m */; };
 		644C5D3F1676ACE700436A9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D3E1676ACE700436A9A /* Default.png */; };
 		644C5D411676ACE700436A9A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D401676ACE700436A9A /* Default@2x.png */; };
 		644C5D431676ACE700436A9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644C5D421676ACE700436A9A /* Default-568h@2x.png */; };
@@ -50,8 +50,8 @@
 		644C5D361676ACE700436A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		644C5D381676ACE700436A9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		644C5D3A1676ACE700436A9A /* PMPKVO Sample iOS App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PMPKVO Sample iOS App-Prefix.pch"; sourceTree = "<group>"; };
-		644C5D3B1676ACE700436A9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		644C5D3C1676ACE700436A9A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		644C5D3B1676ACE700436A9A /* SampleiOSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleiOSAppDelegate.h; sourceTree = "<group>"; };
+		644C5D3C1676ACE700436A9A /* SampleiOSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleiOSAppDelegate.m; sourceTree = "<group>"; };
 		644C5D3E1676ACE700436A9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		644C5D401676ACE700436A9A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		644C5D421676ACE700436A9A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -110,8 +110,8 @@
 		644C5D321676ACE700436A9A /* HTBKVO Sample iOS App */ = {
 			isa = PBXGroup;
 			children = (
-				644C5D3B1676ACE700436A9A /* AppDelegate.h */,
-				644C5D3C1676ACE700436A9A /* AppDelegate.m */,
+				644C5D3B1676ACE700436A9A /* SampleiOSAppDelegate.h */,
+				644C5D3C1676ACE700436A9A /* SampleiOSAppDelegate.m */,
 				644C5D441676ACE700436A9A /* ViewController.h */,
 				644C5D451676ACE700436A9A /* ViewController.m */,
 				644C5D471676ACE700436A9A /* ViewController.xib */,
@@ -351,7 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				644C5D391676ACE700436A9A /* main.m in Sources */,
-				644C5D3D1676ACE700436A9A /* AppDelegate.m in Sources */,
+				644C5D3D1676ACE700436A9A /* SampleiOSAppDelegate.m in Sources */,
 				644C5D461676ACE700436A9A /* ViewController.m in Sources */,
 				644C5D4E1676AD0200436A9A /* HTBKVOTests.m in Sources */,
 				644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */,
