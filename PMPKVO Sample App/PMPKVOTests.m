@@ -180,26 +180,34 @@
 
 - (void)test5biDirectionalBinding
 {
-    TestObservee * objectA = [[TestObservee alloc] init];
-    objectA.observeMe = @"Burrell Smith";
+    TestObservee * objectA;
+    TestBinder * objectB;
+    NSArray * bindings;
     
-    TestBinder * objectB = [[TestBinder alloc] init];
-    objectB.targetString = @"Andy Hertzfeld";
+    @autoreleasepool
+    {
+        objectA = [[TestObservee alloc] init];
+        objectA.observeMe = @"Burrell Smith";
+        
+        objectB = [[TestBinder alloc] init];
+        objectB.targetString = @"Andy Hertzfeld";
+        
+        bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
+        
+        NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
+        
+        NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
+        NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
+        
+        objectA.observeMe = @"Bill Atkinson";
+        NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
+        
+        objectB.targetString = @"Bud Tribble";
+        NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
+        
+        objectA = nil; // releasing objectA first should generate no KVO warnings
+    }
     
-    NSArray * bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
-    
-    NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
-    
-    NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
-    NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
-    
-    objectA.observeMe = @"Bill Atkinson";
-    NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
-    
-    objectB.targetString = @"Bud Tribble";
-    NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
-    
-    objectA = nil; // releasing objectA first should generate no KVO warnings
     objectB = nil;
     bindings = nil;
     
@@ -208,26 +216,34 @@
 
 - (void)test6releaseObjectBFirst
 {
-    TestObservee * objectA = [[TestObservee alloc] init];
-    objectA.observeMe = @"Burrell Smith";
+    TestObservee * objectA;
+    TestBinder * objectB;
+    NSArray * bindings;
     
-    TestBinder * objectB = [[TestBinder alloc] init];
-    objectB.targetString = @"Andy Hertzfeld";
+    @autoreleasepool
+    {
+        objectA = [[TestObservee alloc] init];
+        objectA.observeMe = @"Burrell Smith";
+        
+        objectB = [[TestBinder alloc] init];
+        objectB.targetString = @"Andy Hertzfeld";
+        
+        bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
+        
+        NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
+        
+        NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
+        NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
+        
+        objectA.observeMe = @"Bill Atkinson";
+        NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
+        
+        objectB.targetString = @"Bud Tribble";
+        NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
+        
+        objectB = nil; // releasing objectA first should generate no KVO warnings
+    }
     
-    NSArray * bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
-    
-    NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
-    
-    NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
-    NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
-    
-    objectA.observeMe = @"Bill Atkinson";
-    NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
-    
-    objectB.targetString = @"Bud Tribble";
-    NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
-    
-    objectB = nil; // releasing objectB first should generate no KVO warnings
     objectA = nil;
     bindings = nil;
     
@@ -236,28 +252,36 @@
 
 - (void)test7releaseBindingsFirst
 {
-    TestObservee * objectA = [[TestObservee alloc] init];
-    objectA.observeMe = @"Burrell Smith";
+    TestObservee * objectA;
+    TestBinder * objectB;
+    NSArray * bindings;
     
-    TestBinder * objectB = [[TestBinder alloc] init];
-    objectB.targetString = @"Andy Hertzfeld";
+    @autoreleasepool
+    {
+        objectA = [[TestObservee alloc] init];
+        objectA.observeMe = @"Burrell Smith";
+        
+        objectB = [[TestBinder alloc] init];
+        objectB.targetString = @"Andy Hertzfeld";
+        
+        bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
+        
+        NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
+        
+        NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
+        NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
+        
+        objectA.observeMe = @"Bill Atkinson";
+        NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
+        
+        objectB.targetString = @"Bud Tribble";
+        NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
+        
+        bindings = nil;
+    }
     
-    NSArray * bindings = [PMPKVObservation bidirectionallyBind:objectA keyPath:@"observeMe" withObject:objectB keyPath:@"targetString"];
-    
-    NSAssert(bindings, @"bidirectionallyBind convenience method returned nil");
-    
-    NSAssert([objectA.observeMe isEqualToString:@"Burrell Smith"], @"After creating the binding, objectA's property should be unchanged");
-    NSAssert([objectB.targetString isEqualToString:@"Burrell Smith"], @"After creating the binding, objectB's property should equal objectA's");
-    
-    objectA.observeMe = @"Bill Atkinson";
-    NSAssert([objectB.targetString isEqualToString:@"Bill Atkinson"], @"Setting objectA's property updates objectB's");
-    
-    objectB.targetString = @"Bud Tribble";
-    NSAssert([objectA.observeMe isEqualToString:@"Bud Tribble"], @"Setting object B's property updates object A's");
-    
-    bindings = nil;
-    objectB = nil;
     objectA = nil;
+    objectB = nil;
     
     [self next];
 }
