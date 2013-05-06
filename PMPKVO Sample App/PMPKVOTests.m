@@ -17,25 +17,20 @@
 @interface PMPKVOTests ()
 
 @property (nonatomic, strong) TestObservee * observee;
-@property BOOL changeObserved;
+@property BOOL test1ChangeObserved;
 @property (nonatomic, strong, readonly) NSArray * testSelectors;
 @property (nonatomic) NSInteger currentTestSelectorIndex;
 @property (nonatomic, strong) PMPKVObservation * kvo;
 @property (nonatomic, strong) TestBinder * binder;
 
 - (void)next;
-- (void)checkObservationAndNext;
+- (void)checkObservationAndNext:(BOOL)changeObserved;
 - (NSString *)currentTest;
 
 @end
 
 
 @implementation PMPKVOTests
-
-@synthesize observee;
-@synthesize changeObserved;
-@synthesize currentTestSelectorIndex;
-@synthesize kvo = _kvo;
 
 - (NSArray *)testSelectors
 {
@@ -51,6 +46,7 @@
 
 - (void)test1NormalKVO
 {
+    self.test1ChangeObserved = NO;
     self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Orig text";
     
@@ -58,14 +54,14 @@
     
     self.observee.observeMe = @"New text";
     
-    [self checkObservationAndNext];
+    [self checkObservationAndNext:self.test1ChangeObserved];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     // checking context to make sure we don't get called for PMPKVO
     NSAssert(object == self.observee && context == (void *)1, @"recieved wrong kvo");
-    self.changeObserved = YES;
+    self.test1ChangeObserved = YES;
 }
 
 - (void)test1cleanup
@@ -85,6 +81,7 @@
     self.kvo.observedObject = self.observee;
     self.kvo.keyPath = @"observeMe";
     
+    __block BOOL changeObserved;
     @weakify(self)
     
     [self.kvo setCallbackBlock:^(PMPKVObservation * obs, NSDictionary * change) {
@@ -95,14 +92,14 @@
             NSLog(@"received wrong kvo");
             [NSException raise:@"received wrong kvo" format:NULL];
         }
+        changeObserved = YES;
     }];
     
     [self.kvo observe];
     
     self.observee.observeMe = @"New text";
     
-    //[self checkObservationAndNext];
-    [self next];
+    [self checkObservationAndNext:changeObserved];
 }
 
 - (void)test2cleanup
@@ -118,6 +115,7 @@
     self.observee = [[TestObservee alloc] init];
     self.observee.observeMe = @"Orig text";
     
+    __block BOOL changeObserved;
     @weakify(self)
     
     self.kvo = [PMPKVObservation observe:self.observee
@@ -126,13 +124,12 @@
                                 callback:^(PMPKVObservation *observation, NSDictionary *changeDictionary) {
                                     @strongify(self)
                                     NSAssert([[self currentTest] isEqualToString:@"test3helperMethodSimpleBlockObservation"], @"received wrong kvo");
-                                    self.changeObserved = YES;
+                                    changeObserved = YES;
                                 }];
         
     self.observee.observeMe = @"New text";
     
-    //[self checkObservationAndNext];
-    [self next];
+    [self checkObservationAndNext:changeObserved];
 }
 
 - (void)test3cleanup
@@ -141,6 +138,14 @@
     self.observee = nil; // shouldn't cause any KVO warnings in console
     
     [self next];
+}
+
+- (void)test4uniDirectionalBinding
+{
+    self.observee = [[TestObservee alloc] init];
+    self.observee.observeMe = @"Initial value";
+    
+    
 }
 
 /*
@@ -201,20 +206,13 @@
     [self performSelector:@selector(_next) withObject:nil afterDelay:0];
 }
 
-- (void)_checkObservationAndNext
+- (void)checkObservationAndNext:(BOOL)changeObserved
 {
-    NSAssert(self.changeObserved, @"No change observed");
+    NSAssert(changeObserved, @"No change observed");
     
     NSLog(@"Confirmed change observation");
     
-    self.changeObserved = NO;
-    
     [self _next];
-}
-
-- (void)checkObservationAndNext
-{
-    [self performSelector:@selector(_checkObservationAndNext) withObject:nil afterDelay:0];
 }
 
 @end
