@@ -37,9 +37,15 @@ bc.. #import "HTBKVObservation.h"
                                                      changes);
                                              }];
 
-    self.binding = ...
+    self.unidirectionalBinding = [HTBKVObservation bind:theSourceObject
+                                                keyPath:@"somePropertyOnTheSourceObject"
+                                               toObject:destinationObject
+                                                keyPath:@"somePropertyOnTheDestinationObject"];
 
-    self.bidirectionalBinding = ...
+    self.bidirectionalBinding = [HTBKVObservation bidrectionallyBind:objectA
+                                                              keyPath:@"somePropertyOnObjectA"
+                                                           withObject:objectB
+                                                              keyPath:@"somePropertyOnObjectB"];
 }
 
 @end
@@ -47,6 +53,32 @@ bc.. #import "HTBKVObservation.h"
 p. The options and change dictionary are as per normal KVO. You need to be wary of the block causing retain cycles of self as usual.
 
 p. Unlike MAKVONotificationCenter and others, you are responsible for managing the lifecycle of the kvo object - when it is dealloc-ed the observation will be removed. Like MAKVONotificationCenter, a minimum of magic is used to swizzle the dealloc method of the observed object and remove the observation if it still exists (tracked via an associated NSHashTable). If for some reason you want to find out if the kvo object you hold has been released early you can check the @isValid@ accessor (which you can observe with KVO).
+
+h2. Creating Observations
+
+In the Synopsis above you can see the two ways of creating observations, with the second being purely a convenience. The HTBKVObservation instance must be retained for the observation to remain active (see the section on Lifetime below).
+
+The options value is simply passed through to the underlying KVO call, so see `NSKeyValueObservingOptions` for more info. Likewise, the `changeDictionary` is the one provided by KVO itself, so see `observeValueForKeyPath:ofObject:change:context:` for more info.
+
+h2. Creating Bindings
+
+When you create a unidirectional binding, the destination object is brought in sync immediately.
+
+When you create a bidirectional binding pair, objectB is brought in sync with objectA. Subsequently, any change to either objectA or objectB will be propogated to the other object.
+
+h2. Observation/Binding Lifetime
+
+The Observation will begin automatically when one of the above class/convenience methods is called or if you create an instance of HTBKVObservation yourself, when you send the `observe` message.
+
+The Observation will end (cleanly) when any one of the following happens:
+
+# The HTBKVObservation object is dealloc'd
+# The observed object is dealloc'd
+# The HTBKVObservation object is sent an invalidate message.
+
+Additionally, if the observing object is dealloc'd the observation will be void (although still fire) since the HTBObservation instance maintains only a weak reference to the observing object.
+
+For unidirectional binding, the above rules apply as you would expect. The bidirectional binding convenience method simply returns two instances of HTBKVObservation, with objectA and objectB the observer/observee on one or the other - so in effect both are ended or nullified by either objectA or objectB being dealloc'd (and of course also if the observation objects are dealloc'd).
 
 h2. Caveats
 
