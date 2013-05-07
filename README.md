@@ -84,8 +84,8 @@ For unidirectional binding, the above rules apply as you would expect. The bidir
 
 ## Caveats
 
-# While I am using this in a client project, that project has not yet shipped so I can't promise wide-spread testing. Take a look at the tests in the test app and if you are using scenarios that you don't thing are tested pull requests are welcome!
-# It now requires ARC. It is most tested under MacOS 10.8 but supports 10.7 and up and iOS 5 and up (there are test apps for both MacOS 10.7 and iOS 5).
+1. While I am using this in a number of Mac and iOS client projects, I can't promise wide-spread testing. Take a look at the tests in the test app and if you are using scenarios that you don't thing are tested pull requests are welcome!
+2. As of version 0.2 it requires ARC. It is most tested under MacOS 10.8 but supports 10.7 and up and iOS 5 and up (there are test apps for both MacOS 10.7 and iOS 5).
 
 ## Running the Test Apps
 
@@ -112,4 +112,4 @@ Enter HTBKVObservation!
 
 Mark Aufflick ([mark@aufflick.com](mailto:mark@aufflick.com))
 [http://mark.aufflick.com](http://mark.aufflick.com)
-[http://pumptheory.com](http://pumptheory.com)
+[http://htb.io](http://htb.io)
