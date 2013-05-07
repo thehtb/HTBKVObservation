@@ -7,8 +7,10 @@ p. Include HTBKVObservation.m and .h in your project
 bc.. #import "HTBKVObservation.h"
 
 @interface HTBKVOTests ()
-@property (retain) HTBKVObservation * anObservation;
-@property (retain) NSMutableArray * multipleObservations;
+@property (strong) HTBKVObservation * anObservation;
+@property (strong) NSArray * multipleObservations;
+@property (strong) HTBKVObservation * binding;
+@property (strong) NSArray * bidirectionalBinding;
 @end
 
 @implementation HTBKVOTests
@@ -35,6 +37,9 @@ bc.. #import "HTBKVObservation.h"
                                                      changes);
                                              }];
 
+    self.binding = ...
+
+    self.bidirectionalBinding = ...
 }
 
 @end
