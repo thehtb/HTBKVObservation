@@ -4,7 +4,8 @@ h2. Synopsis
 
 p. Include HTBKVObservation.m and .h in your project
 
-bc.. #import "HTBKVObservation.h"
+```objective-c
+#import "HTBKVObservation.h"
 
 @interface HTBKVOTests ()
 @property (strong) HTBKVObservation * anObservation;
@@ -49,6 +50,7 @@ bc.. #import "HTBKVObservation.h"
 }
 
 @end
+```
 
 p. The options and change dictionary are as per normal KVO. You need to be wary of the block causing retain cycles of self as usual.
 
