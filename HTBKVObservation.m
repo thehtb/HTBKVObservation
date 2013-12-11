@@ -90,7 +90,7 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
     @weakify(boundObject);
     observation.callbackBlock = ^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
         @strongify(boundObject);
-        [boundObject setValue:changeDictionary[NSKeyValueChangeNewKey] forKey:boundObjectKeyPath];
+        [boundObject setValue:changeDictionary[NSKeyValueChangeNewKey] forKeyPath:boundObjectKeyPath];
     };
     
     if ([observation observe])
@@ -125,7 +125,7 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
         if (!bindingUpdateInProgress)
         {
             bindingUpdateInProgress = YES;
-            [objectB setValue:changeDictionary[NSKeyValueChangeNewKey] forKey:objectBKeyPath];
+            [objectB setValue:changeDictionary[NSKeyValueChangeNewKey] forKeyPath:objectBKeyPath];
             bindingUpdateInProgress = NO;
         }
     };
@@ -135,7 +135,7 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
         if (!bindingUpdateInProgress)
         {
             bindingUpdateInProgress = YES;
-            [objectA setValue:changeDictionary[NSKeyValueChangeNewKey] forKey:objectAKeyPath];
+            [objectA setValue:changeDictionary[NSKeyValueChangeNewKey] forKeyPath:objectAKeyPath];
             bindingUpdateInProgress = NO;
         }
     };
