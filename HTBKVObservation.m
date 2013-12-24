@@ -11,6 +11,8 @@
 #import <objc/runtime.h>
 #import <libextobjc/EXTScope.h>
 
+#define NormaliseNil(v) (v == [NSNull null] ? nil : v)
+
 const char * HTBKVObservationClassIsSwizzledKey = "HTBKVObservationClassIsSwizzledKey";
 const NSString * HTBKVObservationClassIsSwizzledLockKey = @"HTBKVObservationClassIsSwizzledLockKey";
 const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserversKey";
@@ -91,10 +93,7 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
     observation.callbackBlock = ^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
         @strongify(boundObject);
         id val = changeDictionary[NSKeyValueChangeNewKey];
-        if (val == [NSNull null])
-            val = nil;
-        
-        [boundObject setValue:val forKeyPath:boundObjectKeyPath];
+        [boundObject setValue:NormaliseNil(val) forKeyPath:boundObjectKeyPath];
     };
     
     if ([observation observe])
@@ -129,7 +128,8 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
         if (!bindingUpdateInProgress)
         {
             bindingUpdateInProgress = YES;
-            [objectB setValue:changeDictionary[NSKeyValueChangeNewKey] forKeyPath:objectBKeyPath];
+            id val = changeDictionary[NSKeyValueChangeNewKey];
+            [objectB setValue:NormaliseNil(val) forKeyPath:objectBKeyPath];
             bindingUpdateInProgress = NO;
         }
     };
@@ -139,7 +139,8 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
         if (!bindingUpdateInProgress)
         {
             bindingUpdateInProgress = YES;
-            [objectA setValue:changeDictionary[NSKeyValueChangeNewKey] forKeyPath:objectAKeyPath];
+            id val = changeDictionary[NSKeyValueChangeNewKey];
+            [objectA setValue:NormaliseNil(val) forKeyPath:objectAKeyPath];
             bindingUpdateInProgress = NO;
         }
     };
