@@ -33,7 +33,6 @@
 		64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* HTBKVObservation.m */; };
 		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
 		64A0846D150D890B00BE94AC /* HTBKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* HTBKVOTests.m */; };
-		64EA06A3150ED2DA00E0934C /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 64EA06A2150ED2DA00E0934C /* README.textile */; };
 		C1908BC66AD74E6A91707F3A /* libPods-SampleiOSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6E6944F2F944FA9E5CECF6 /* libPods-SampleiOSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +77,6 @@
 		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		64A0846B150D890B00BE94AC /* HTBKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = HTBKVOTests.h; path = "PMPKVO Sample App/HTBKVOTests.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		64A0846C150D890B00BE94AC /* HTBKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTBKVOTests.m; path = "PMPKVO Sample App/HTBKVOTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		64EA06A2150ED2DA00E0934C /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = README.textile; sourceTree = "<group>"; };
 		675D585C671F428E90ECB0DA /* Pods-SampleMacApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMacApp.xcconfig"; path = "Pods/Pods-SampleMacApp.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DDEDC9890A0043D8A298FD67 /* Pods-SampleiOSApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleiOSApp.xcconfig"; path = "Pods/Pods-SampleiOSApp.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -151,7 +149,6 @@
 		64A0841D150D7DF100BE94AC = {
 			isa = PBXGroup;
 			children = (
-				64EA06A2150ED2DA00E0934C /* README.textile */,
 				64A08461150D7E2500BE94AC /* HTBKVObservation.h */,
 				64A08462150D7E2500BE94AC /* HTBKVObservation.m */,
 				644C5D4D1676ACF200436A9A /* Shared Test Classes */,
@@ -308,7 +305,6 @@
 				64A08437150D7DF200BE94AC /* InfoPlist.strings in Resources */,
 				64A0843D150D7DF200BE94AC /* Credits.rtf in Resources */,
 				64A08443150D7DF200BE94AC /* MainMenu.xib in Resources */,
-				64EA06A3150ED2DA00E0934C /* README.textile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
