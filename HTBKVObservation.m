@@ -90,7 +90,11 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
     @weakify(boundObject);
     observation.callbackBlock = ^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
         @strongify(boundObject);
-        [boundObject setValue:changeDictionary[NSKeyValueChangeNewKey] forKeyPath:boundObjectKeyPath];
+        id val = changeDictionary[NSKeyValueChangeNewKey];
+        if (val == [NSNull null])
+            val = nil;
+        
+        [boundObject setValue:val forKeyPath:boundObjectKeyPath];
     };
     
     if ([observation observe])
