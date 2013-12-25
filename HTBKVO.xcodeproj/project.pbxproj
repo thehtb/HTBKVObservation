@@ -33,6 +33,8 @@
 		64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08462150D7E2500BE94AC /* HTBKVObservation.m */; };
 		64A08466150D7EE000BE94AC /* TestObservee.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A08465150D7EE000BE94AC /* TestObservee.m */; };
 		64A0846D150D890B00BE94AC /* HTBKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0846C150D890B00BE94AC /* HTBKVOTests.m */; };
+		64F76384186A4E33009AB975 /* TestObserveeSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F76383186A4E33009AB975 /* TestObserveeSubclass.m */; };
+		64F76385186A4E33009AB975 /* TestObserveeSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F76383186A4E33009AB975 /* TestObserveeSubclass.m */; };
 		C1908BC66AD74E6A91707F3A /* libPods-SampleiOSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6E6944F2F944FA9E5CECF6 /* libPods-SampleiOSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		64A08465150D7EE000BE94AC /* TestObservee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TestObservee.m; path = "PMPKVO Sample App/TestObservee.m"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		64A0846B150D890B00BE94AC /* HTBKVOTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = HTBKVOTests.h; path = "PMPKVO Sample App/HTBKVOTests.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		64A0846C150D890B00BE94AC /* HTBKVOTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = HTBKVOTests.m; path = "PMPKVO Sample App/HTBKVOTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		64F76382186A4E33009AB975 /* TestObserveeSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObserveeSubclass.h; sourceTree = "<group>"; };
+		64F76383186A4E33009AB975 /* TestObserveeSubclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObserveeSubclass.m; sourceTree = "<group>"; };
 		675D585C671F428E90ECB0DA /* Pods-SampleMacApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMacApp.xcconfig"; path = "Pods/Pods-SampleMacApp.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DDEDC9890A0043D8A298FD67 /* Pods-SampleiOSApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleiOSApp.xcconfig"; path = "Pods/Pods-SampleiOSApp.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -142,6 +146,8 @@
 				64A08465150D7EE000BE94AC /* TestObservee.m */,
 				642399C117377528004DEDE3 /* TestBinder.h */,
 				642399C217377528004DEDE3 /* TestBinder.m */,
+				64F76382186A4E33009AB975 /* TestObserveeSubclass.h */,
+				64F76383186A4E33009AB975 /* TestObserveeSubclass.m */,
 			);
 			name = "Shared Test Classes";
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				644C5D3D1676ACE700436A9A /* SampleiOSAppDelegate.m in Sources */,
 				644C5D461676ACE700436A9A /* ViewController.m in Sources */,
 				644C5D4E1676AD0200436A9A /* HTBKVOTests.m in Sources */,
+				64F76385186A4E33009AB975 /* TestObserveeSubclass.m in Sources */,
 				644C5D4F1676AD0400436A9A /* TestObservee.m in Sources */,
 				644C5D501676AE4600436A9A /* HTBKVObservation.m in Sources */,
 				642399C417377D4D004DEDE3 /* TestBinder.m in Sources */,
@@ -363,6 +370,7 @@
 				64A08439150D7DF200BE94AC /* main.m in Sources */,
 				64A08440150D7DF200BE94AC /* SampleMacAppDelegate.m in Sources */,
 				64A08463150D7E2500BE94AC /* HTBKVObservation.m in Sources */,
+				64F76384186A4E33009AB975 /* TestObserveeSubclass.m in Sources */,
 				64A08466150D7EE000BE94AC /* TestObservee.m in Sources */,
 				64A0846D150D890B00BE94AC /* HTBKVOTests.m in Sources */,
 				642399C317377528004DEDE3 /* TestBinder.m in Sources */,

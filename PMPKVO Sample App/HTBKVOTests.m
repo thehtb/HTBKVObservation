@@ -11,6 +11,7 @@
 #import "TestObservee.h"
 #import "HTBKVObservation.h"
 #import "TestBinder.h"
+#import "TestObserveeSubclass.h"
 
 #import <libextobjc/EXTScope.h>
 
@@ -44,6 +45,7 @@
              @"test5biDirectionalBinding",
              @"test6releaseObjectBFirst",
              @"test7releaseBindingsFirst",
+             @"test8observeSuperclass"
              ];
 }
 
@@ -282,6 +284,79 @@
     
     objectA = nil;
     objectB = nil;
+    
+    [self next];
+}
+
+- (void)test8observeSuperclass
+{
+    TestObservee * observee1;
+    HTBKVObservation * observation1;
+    __block NSString * result1;
+    
+    TestObserveeSubclass * observee2;
+    HTBKVObservation * observation2;
+    HTBKVObservation * observation3;
+    __block NSString * result2;
+    __block NSString * result3;
+    
+    @autoreleasepool {
+        
+        @autoreleasepool {
+            
+            @autoreleasepool {
+                
+                observee1 = [[TestObservee alloc] init];
+                observation1 = [HTBKVObservation observe:observee1
+                                                 keyPath:@"observeMe"
+                                                 options:0
+                                                callback:^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
+                                                    result1 = ((TestObservee *)observation.observedObject).observeMe;
+                                                }];
+                
+                observee1.observeMe = @"Foo";
+                NSAssert([result1 isEqualToString:@"Foo"], @"Basic observation 1");
+                
+                observee2 = [[TestObserveeSubclass alloc] init];
+                observation2 = [HTBKVObservation observe:observee2
+                                                 keyPath:@"observeMe"
+                                                 options:0
+                                                callback:^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
+                                                    result2 = ((TestObserveeSubclass *)observation.observedObject).observeMe;
+                                                }];
+                observation3 = [HTBKVObservation observe:observee2
+                                                 keyPath:@"observeMeToo"
+                                                 options:0
+                                                callback:^(HTBKVObservation *observation, NSDictionary *changeDictionary) {
+                                                    result3 = ((TestObserveeSubclass *)observation.observedObject).observeMeToo;
+                                                }];
+                
+                observee2.observeMe = @"Bar";
+                observee2.observeMeToo = @"Baz";
+                
+                NSAssert([result2 isEqualToString:@"Bar"], @"Basic observation 2");
+                NSAssert([result3 isEqualToString:@"Baz"], @"Basic observation 3");
+                
+                // the real point of this test is that when the observation goes away by virtue of the swizzled dealloc
+                // implementation in both sub and super class, there shouldn't be an infinite loop.
+                observee1 = nil;
+            }
+            
+            NSAssert(observation1.isValid == NO, @"After first observee is deallocated, observation 1 should not be valid");
+            NSAssert(observation2.isValid == YES, @"After first observee is deallocated, observation 2 should still be valid");
+            NSAssert(observation3.isValid == YES, @"After first observee is deallocated, observation 3 should still be valid");
+            
+            observee2 = nil;
+        }
+        
+        NSAssert(observation1.isValid == NO, @"After first observee is deallocated, observation 1 should not be valid");
+        NSAssert(observation2.isValid == NO, @"After first observee is deallocated, observation 2 should not be valid");
+        NSAssert(observation3.isValid == NO, @"After first observee is deallocated, observation 3 should not be valid");
+        
+        observation1 = nil;
+        observation2 = nil;
+        observation3 = nil;
+    }
     
     [self next];
 }
