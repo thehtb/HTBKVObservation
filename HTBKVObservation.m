@@ -214,10 +214,7 @@ const char * HTBKVObservationObjectObserversKey = "HTBKVObservationObjectObserve
         
         if (!objc_getAssociatedObject(self.observedObject, HTBKVObservationObjectObserversKey))
         {
-            SEL weakObjectsHashTableSelector = NSSelectorFromString(@"weakObjectsHashTable");
-            SEL hashTableWithWeakObjectsSelector = NSSelectorFromString(@"hashTableWithWeakObjects");
-            
-            NSHashTable * observeeObserverTrackingHashTable = [NSHashTable respondsToSelector:weakObjectsHashTableSelector] ? [NSHashTable performSelector:weakObjectsHashTableSelector] : [NSHashTable performSelector:hashTableWithWeakObjectsSelector];
+            NSHashTable * observeeObserverTrackingHashTable = [NSHashTable weakObjectsHashTable];
 
             objc_setAssociatedObject(self.observedObject, HTBKVObservationObjectObserversKey, observeeObserverTrackingHashTable, OBJC_ASSOCIATION_RETAIN);
         }
