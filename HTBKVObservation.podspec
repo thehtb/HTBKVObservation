@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
   s.author   = { 'Mark Aufflick' => 'mark@aufflick.com' }
   s.source   = { :git => 'https://github.com/thehtb/HTBKVObservation.git', :tag => "#{s.version}" }
   s.source_files = 'HTBKVObservation.{h,m}'
-  s.dependency 'libextobjc/EXTScope', '~> 0.2.5'
+  s.dependency 'libextobjc/EXTScope', '~> 0.4.0'
 end
